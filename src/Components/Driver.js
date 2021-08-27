@@ -7,7 +7,6 @@ import '../CSS/Driver.css'
 
 class Driver extends Component {
     constructor(props){
-        console.log("Constr")
         super(props);
         this.state = {
             name: this.props.user.name,
@@ -15,16 +14,11 @@ class Driver extends Component {
             pickedVehicle: undefined,
             submitAvailable: true,
             mechanicInput: '',
-            mechanics: /* fetch(`http://localhost:3000/mechanics/aze`)
-            .then(response => response.json())
-            .then(mechanics => {
-                this.setState({mechanics: mechanics})
-            }) */ undefined
+            mechanics: undefined
         }
     }
 
     render(){
-        console.log("Rnder")
         return(
             <>
                 <div>
@@ -35,9 +29,9 @@ class Driver extends Component {
                 />
                 <div className="picked-vehicle">{this.ShowPickedVehicle()}</div>
                 <ScheduledAppointments id={this.state.ownerId}/>
-                <datalist id="mylist">
+                <>
                     {this.ShowMechanics()}
-                </datalist>
+                </>
             </>
         )
     }
@@ -85,6 +79,8 @@ class Driver extends Component {
                         onClick={() => {
                             this.ToggleSubmitAvailable()
                             //fetching.postMethod
+                            console.log("Odabrani auto: ", this.state.pickedVehicle)
+                            console.log("Mehaničar: ", this.state.mechanicInput)
                         }}
                         >
                         Schedule
@@ -102,31 +98,35 @@ class Driver extends Component {
     //#endregion
     //#region Mechanic dropdown
     FetchMechanics = (event) =>{
-        this.setState({mechanicInput: event.target.value})
-        fetch(`http://localhost:3000/mechanics/aze`)
+        let value = event.target.value;
+        this.setState({mechanicInput: value})
+        if(event.target.value !== '')
+        {
+            fetch(`http://localhost:3000/mechanics/${event.target.value}`)
         .then(response => response.json())
         .then(mechanics => {
             this.setState({mechanics: mechanics})
         })
+        }
     }
 
     ShowMechanics = () =>{
         if(Array.isArray(this.state.mechanics)){
             return(
-                <div>
+                <datalist id="mylist">
                     {this.state.mechanics.map(mechanic =>{
                         return(
                             <>
                             {/*TREBA PROMIJENITI SVOJSTVA KOJA SE PREDAJU KADA SE UKLJUČI PRAVA BAZA*/}
                                 <option 
+                                    key={mechanic.id}
                                     onClick={() => console.log("Odabrani mehaničar: ", mechanic)}
-                                    key={mechanic.appointment_number}
-                                    value={mechanic.serial_number}/>
+                                    value={mechanic.name}/>
                             </>
                         )
                     })
-                    }}
-                </div>
+                    }
+                </datalist>
             )
         }
     }

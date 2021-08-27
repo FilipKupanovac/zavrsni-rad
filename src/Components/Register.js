@@ -126,24 +126,27 @@ class Register extends Component{
                     this.props.getContent()
                 }
             }) */
-            .then(
-                fetch('http://localhost:3000/signin', {
-                    method: 'post',
-                    headers: {'Content-Type': 'application/json'},
-                    body: JSON.stringify({
-                    email: email,
-                    password: password
-                })
-                }).then(res => {
-                    let odg = res.json();
-                    return odg;
-                }).then(user => {
-                    if(user !== 'wrong credentials'){
-                        this.props.loadUser(user);
-                        this.props.trySignIn()
-                    }
-                })
-            )
+            .then(resp =>{
+                if(resp.status !== 400){
+                    fetch('http://localhost:3000/signin', {
+                        method: 'post',
+                        headers: {'Content-Type': 'application/json'},
+                        body: JSON.stringify({
+                        email: email,
+                        password: password
+                    })
+                    }).then(res => {
+                        let odg = res.json();
+                        return odg;
+                    }).then(user => {
+                        if(user !== 'wrong credentials'){
+                            this.props.loadUser(user);
+                            this.props.trySignIn()
+                        }
+                    })
+                }
+            })
+            .catch(console.log("BAD REQUEST Register.js 147:10"))
         }
         else 
             console.log("Empty input fields")
