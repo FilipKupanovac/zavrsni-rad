@@ -24,7 +24,6 @@ class App extends Component {
   }
 
   render(){
-    //const {route} = this.state;
     return(
       <>
         <Navigation isSignedIn={this.state.isSignedIn} signOut={this.SignOut} setRoute={this.SetRoute}/>

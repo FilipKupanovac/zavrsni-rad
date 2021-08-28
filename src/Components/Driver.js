@@ -1,10 +1,10 @@
 import React, {Component} from 'react';
 //Components
 import VehicleList from './VehicleList'
+import SubmitScheduleForm from './SubmitScheduleForm'
 import ScheduledAppointments from './ScheduledAppointments';
 //CSS
 import '../CSS/Driver.css'
-
 class Driver extends Component {
     constructor(props){
         super(props);
@@ -12,12 +12,15 @@ class Driver extends Component {
             name: this.props.user.name,
             ownerId: this.props.user.id,
             pickedVehicle: undefined,
-            submitAvailable: true,
-            mechanicInput: undefined,
             mechanics: undefined,
+            submitAvailable: true,
+            prevAppointments: undefined,
+
             dateInput: undefined,
-            problemExplanation: undefined
-        }
+            mechanicInput: undefined,
+            problemInput: undefined,
+            key: undefined
+        }   
     }
 
     render(){
@@ -26,109 +29,38 @@ class Driver extends Component {
                 <div>
                     <p>Driver: {this.state.name}</p>
                 </div>
-                <VehicleList id={this.props.user.id}
+                <VehicleList
+                    id={this.props.user.id}
                     pickvehicle={this.PickVehicle}
                 />
-                <div className="picked-vehicle">{this.ShowPickedVehicle()}</div>
-                <ScheduledAppointments id={this.state.ownerId}/>
+                <div className="picked-vehicle">
+                    {this.state.pickedVehicle !== undefined 
+                        ? <p>Odabrali ste vozilo {this.state.pickedVehicle.manufacturer} {this.state.pickedVehicle.model}</p>
+                        : <></>}
+                </div>
+                <div className="submit-form">
+                    <SubmitScheduleForm submitAvailable = {this.state.submitAvailable}
+                        toggleSubmitAvailable={this.ToggleSubmitAvailable}
+                        pickedVehicle={this.state.pickedVehicle}
+                        onDateChange={this.OnDateChange}
+                        onMechanicChange={this.FetchMechanics}
+                        onProblemChange={this.OnProblemChange}
+                        trySubmit={this.TrySubmitSchedule}
+                    />
+                </div>
+                <div className="appointments">
+                    <ScheduledAppointments key={this.state.key} id={this.state.ownerId}/>
+                </div>
+
                 <>
                     {this.ShowMechanics()}
                 </>
             </>
         )
     }
+    
+    //Checked
     //#region Input tracking
-    OnDateChange = (event) => {
-        this.setState({dateInput: event.target.value})
-    }
-    OnProblemChange = (event) =>{
-        this.setState({problemExplanation: event.target.value})
-    }
-    //#endregion
-    //#region Submit Schedule
-    SendScheduleRequest = () =>{
-        fetch(`http://localhost:3000/request-schedule`, {
-            method: 'post',
-            headers: {"Content-Type": "application/json"},
-            body: JSON.stringify({
-                mechanic: this.state.mechanicInput.id,
-                vehicle: this.state.pickedVehicle.serial_number,
-                date: this.state.dateInput,
-                note: this.state.problemExplanation
-            })
-        })
-        .then(resp => resp.json())
-        .then(this.render())
-    }
-
-    ToggleSubmitAvailable(){
-        this.setState({submitAvailable: this.state.submitAvailable 
-                            ? false : true})
-    }
-
-    ShowSubmitForm = () => {
-        if(this.state.submitAvailable){
-            return(
-                <button
-                    onClick={() => this.ToggleSubmitAvailable()}
-                >Schedule new appointment</button>
-            )
-        }
-        else{ //Schedule submit form
-            return(
-                <div>
-                <fieldset>
-                    <div>
-                        <label>Preffered date</label>
-                        <input
-                            onChange={this.OnDateChange}
-                            type="date"
-                        ></input>
-                    </div>
-                    <div>
-                        <label>Mechanic</label>
-                        <input
-                            onChange={this.FetchMechanics} 
-                            placeholder="Start typing preffered mechanic"
-                            type="search" list="mylist"></input>
-                    </div>
-                    <div>
-                        <label>Problem explanation</label>
-                        <input
-                            type="text" placeholder="Please describe what's wrong with your vehicle (optional)"
-                        ></input>
-                    </div>
-                </fieldset>
-                <div>
-                    <button
-                        onClick={() => {
-                            this.TrySubmitSchedule();
-                        }}
-                        >
-                        Schedule
-                    </button>
-                    <button
-                        onClick={() => this.ToggleSubmitAvailable()}
-                        >
-                        Cancel
-                    </button>
-                </div>
-            </div>
-            )
-        }
-    }
-
-    TrySubmitSchedule = () => {
-        let {pickedVehicle,mechanicInput, dateInput} = this.state;
-        if(pickedVehicle !== undefined && mechanicInput !== undefined
-            && dateInput !== undefined && dateInput !== "")
-        {
-            this.SendScheduleRequest();
-            this.ToggleSubmitAvailable();
-        }
-    }
-    //#endregion
-    //#region Mechanic dropdown
     FetchMechanics = (event) =>{
         let value = event.target.value;
         this.setState({mechanicInput: value})
@@ -152,7 +84,48 @@ class Driver extends Component {
         })
         }
     }
+    OnDateChange = (event) => {
+        this.setState({dateInput: event.target.value})
+    }
+    OnProblemChange = (event) =>{
+        this.setState({problemInput: event.target.value})
+    }
+    //#endregion
 
+
+    PickVehicle = (pick) => {
+        if(this.state.pickedVehicle !== undefined){
+            if(pick.serial_number !== this.state.pickedVehicle.serial_number){
+                this.setState({pickedVehicle: pick})
+                this.setState({submitAvailable: true})
+            }
+            else{
+                this.setState({pickedVehicle: undefined})
+            }
+        }
+        else{
+            this.setState({pickedVehicle: pick})
+            this.setState({submitAvailable: true})
+        }
+    }
+    SendScheduleRequest = () =>{
+        fetch(`http://localhost:3000/request-schedule`, {
+            method: 'post',
+            headers: {"Content-Type": "application/json"},
+            body: JSON.stringify({
+                mechanic: this.state.mechanicInput.id,
+                vehicle: this.state.pickedVehicle.serial_number,
+                date: this.state.dateInput,
+                note: this.state.problemInput
+            })
+        })
+        .then(resp => resp.json())
+        .then(data =>{
+            if(data.status !== 400){
+                this.setState({key: Math.random()})
+            }
+        })
+    }
     ShowMechanics = () =>{
         if(Array.isArray(this.state.mechanics)){
             return(
@@ -171,37 +144,21 @@ class Driver extends Component {
             )
         }
     }
-    //#endregion
-    //#region Picking Vehicle
-    PickVehicle = (pick) => {
-        if(this.state.pickedVehicle !== undefined){
-            if(pick.serial_number !== this.state.pickedVehicle.serial_number){
-                this.setState({pickedVehicle: pick})
-            }
-            else{
-                this.setState({pickedVehicle: undefined})
-            }
-        }
-        else{
-            this.setState({pickedVehicle: pick})
-        }
+    ToggleSubmitAvailable = () => {
+        this.setState({submitAvailable: this.state.submitAvailable 
+                            ? false : true})
     }
+    TrySubmitSchedule = () => {
+        let {pickedVehicle,mechanicInput, dateInput} = this.state;
+        if(pickedVehicle !== undefined && mechanicInput !== undefined
+            && dateInput !== undefined && dateInput !== "")
+        {
+            console.log("Poslano")
+            this.SendScheduleRequest();
+            this.ToggleSubmitAvailable();
 
-    ShowPickedVehicle = () => {
-        if(this.state.pickedVehicle !== undefined){
-            const {manufacturer, model} = this.state.pickedVehicle;
-            return (
-                <>
-                    <p>Odabrali ste vozilo: {manufacturer} {model}</p>
-                    <>{this.ShowSubmitForm()}</>
-                </>
-            )
-        }
-        else{
-            return <p>Odaberite vozilo kako bi zakazali novi pregled.</p>
         }
     }
-    //#endregion
+    
 }
-
 export default Driver;
