@@ -132,9 +132,9 @@ class Register extends Component{
                         method: 'post',
                         headers: {'Content-Type': 'application/json'},
                         body: JSON.stringify({
-                        email: email,
-                        password: password
-                    })
+                            email: email,
+                            password: password
+                        })
                     }).then(res => {
                         let odg = res.json();
                         return odg;

@@ -13,8 +13,10 @@ class Driver extends Component {
             ownerId: this.props.user.id,
             pickedVehicle: undefined,
             submitAvailable: true,
-            mechanicInput: '',
-            mechanics: undefined
+            mechanicInput: undefined,
+            mechanics: undefined,
+            dateInput: undefined,
+            problemExplanation: undefined
         }
     }
 
@@ -35,8 +37,30 @@ class Driver extends Component {
             </>
         )
     }
+    //#region Input tracking
+    OnDateChange = (event) => {
+        this.setState({dateInput: event.target.value})
+    }
+    OnProblemChange = (event) =>{
+        this.setState({problemExplanation: event.target.value})
+    }
+    //#endregion
+    //#region Submit Schedule
+    SendScheduleRequest = () =>{
+        fetch(`http://localhost:3000/request-schedule`, {
+            method: 'post',
+            headers: {"Content-Type": "application/json"},
+            body: JSON.stringify({
+                mechanic: this.state.mechanicInput.id,
+                vehicle: this.state.pickedVehicle.serial_number,
+                date: this.state.dateInput,
+                note: this.state.problemExplanation
+            })
+        })
+        .then(resp => resp.json())
+        .then(this.render())
+    }
 
-    //#region Submitting Schedule
     ToggleSubmitAvailable(){
         this.setState({submitAvailable: this.state.submitAvailable 
                             ? false : true})
@@ -57,6 +81,7 @@ class Driver extends Component {
                     <div>
                         <label>Preffered date</label>
                         <input
+                            onChange={this.OnDateChange}
                             type="date"
                         ></input>
                     </div>
@@ -77,10 +102,7 @@ class Driver extends Component {
                 <div>
                     <button
                         onClick={() => {
-                            this.ToggleSubmitAvailable()
-                            //fetching.postMethod
-                            console.log("Odabrani auto: ", this.state.pickedVehicle)
-                            console.log("Mehaničar: ", this.state.mechanicInput)
+                            this.TrySubmitSchedule();
                         }}
                         >
                         Schedule
@@ -95,6 +117,16 @@ class Driver extends Component {
             )
         }
     }
+
+    TrySubmitSchedule = () => {
+        let {pickedVehicle,mechanicInput, dateInput} = this.state;
+        if(pickedVehicle !== undefined && mechanicInput !== undefined
+            && dateInput !== undefined && dateInput !== "")
+        {
+            this.SendScheduleRequest();
+            this.ToggleSubmitAvailable();
+        }
+    }
     //#endregion
     //#region Mechanic dropdown
     FetchMechanics = (event) =>{
@@ -106,6 +138,17 @@ class Driver extends Component {
         .then(response => response.json())
         .then(mechanics => {
             this.setState({mechanics: mechanics})
+            //Taking care of mechanic input and assigning object to state if the input is valid. could be a standalone function
+            let mech = undefined;
+            mechanics.forEach(mechanic => {
+                mechanics.forEach(mechanic =>{
+                    let name = mechanic.name.toLowerCase();
+                    if(name === event.target.value.toLowerCase()){
+                        mech = mechanic
+                    }
+                })
+            });
+            this.setState({mechanicInput: mech})
         })
         }
     }
@@ -117,10 +160,8 @@ class Driver extends Component {
                     {this.state.mechanics.map(mechanic =>{
                         return(
                             <>
-                            {/*TREBA PROMIJENITI SVOJSTVA KOJA SE PREDAJU KADA SE UKLJUČI PRAVA BAZA*/}
                                 <option 
                                     key={mechanic.id}
-                                    onClick={() => console.log("Odabrani mehaničar: ", mechanic)}
                                     value={mechanic.name}/>
                             </>
                         )
