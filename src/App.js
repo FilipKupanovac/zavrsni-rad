@@ -45,7 +45,7 @@ class App extends Component {
       case 'signin': return <Signin loadUser={this.LoadUser} trySignIn={this.TrySignin}/>
       case 'register': return <Register loadUser={this.LoadUser} getContent={this.GetContent} trySignIn={this.TrySignin}/>
       case 'driv': return <Driver user={this.state.user}/>
-      case 'mech': return <Mechanic/>
+      case 'mech': return <Mechanic user={this.state.user}/>
       default: return <></>
     }
   }

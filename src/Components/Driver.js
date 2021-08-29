@@ -59,7 +59,6 @@ class Driver extends Component {
         )
     }
     
-    //Checked
     //#region Input tracking
     FetchMechanics = (event) =>{
         let value = event.target.value;

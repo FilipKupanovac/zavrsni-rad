@@ -30,6 +30,7 @@ class SubmitScheduleFrom extends Component{
                             <input
                                 onChange={this.props.onDateChange}
                                 type="date"
+                                min=""
                             ></input>
                         </div>
                         <div>
