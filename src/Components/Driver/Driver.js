@@ -4,7 +4,7 @@ import VehicleList from './VehicleList'
 import SubmitScheduleForm from './SubmitScheduleForm'
 import ScheduledAppointments from './ScheduledAppointments';
 //CSS
-import '../CSS/Driver.css'
+import '../../CSS/Driver.css'
 class Driver extends Component {
     constructor(props){
         super(props);

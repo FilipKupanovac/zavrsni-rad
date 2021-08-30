@@ -3,8 +3,8 @@ import React, {Component} from 'react';
 import Navigation from './Components/Navigation';
 import Signin from './Components/Signin';
 import Register from './Components/Register';
-import Driver from './Components/Driver';
-import Mechanic from './Components/Mechanic';
+import Driver from './Components/Driver/Driver';
+import Mechanic from './Components/Mechanic/Mechanic';
 //CSS
 import './App.css';
 

@@ -1,7 +1,7 @@
 import React from 'react';
 //Components
 //CSS
-import '../CSS/Vehicle.css'
+import '../../CSS/Vehicle.css'
 
 const Vehicle = ({car, pickvehicle}) => {
     return(

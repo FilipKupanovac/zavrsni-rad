@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 //Components
 import Vehicle from './Vehicle'
 //CSS
-import '../CSS/VehicleList.css'
+import '../../CSS/VehicleList.css'
 
 
 class VehicleList extends Component {
