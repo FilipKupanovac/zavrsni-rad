@@ -12,7 +12,9 @@ class Mechanic extends Component{
             name: this.props.user.name,
             id: this.props.user.id,
             //APPS APPROVAL PART
-            pickedAppointment: undefined
+            pickedAppointment: undefined,
+            //TEST
+            flag: undefined
         }
     }
     
@@ -25,7 +27,11 @@ class Mechanic extends Component{
                 <div>
                     <AppointmentsApproval id={this.props.user.id} 
                     pickedAppointment={this.state.pickedAppointment} 
-                    pickAppointment={this.PickAppointment} />
+                    pickAppointment={this.PickAppointment} 
+                    
+                    /*TEST*/
+                    approveAppoint={this.ApproveAppointment}
+                    />
                 </div>
             </>
         )
@@ -35,22 +41,34 @@ class Mechanic extends Component{
         if(this.state.pickedAppointment !== undefined){
             if(pick.appointment_number !== this.state.pickedAppointment.appointment_number){
                 this.setState({pickedAppointment: pick})
-                //console.log("Izmijenjen pick. ", pick)
             }
             else{
                 this.setState({pickedAppointment: undefined})
-                //console.log("Uklonjen pick. ", pick)
             }
         }
         else{
             this.setState({pickedAppointment: pick})
-            //console.log("Postavljen pick. ", pick)
         }
     }
-    ApproveAppointment = () => {
+    ApproveAppointment = (date) => {
         //Promijeniti u bazi za odabrani appointment stanje iz pending_request ='Y' u pending_request ='N'
         //Ponuditi promjenu željenog datuma dijagnostike
         //(Moguće - odbiti zahtjev)
+        fetch('http://localhost:3000/approve-appointment', {
+            method: 'put',
+            headers: {'Content-Type':'application/json'},
+            body: JSON.stringify({
+                appointment_number: this.state.pickedAppointment.appointment_number,
+                date: date
+            })
+        })
+        .then(res => res.json())
+        .then(data =>{
+            this.setState({pickedAppointment: {
+                scheduled_time : date},
+                flag: Math.random()
+            })
+        })
     }
 }
 

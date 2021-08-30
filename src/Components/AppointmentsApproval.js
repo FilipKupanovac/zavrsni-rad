@@ -15,13 +15,13 @@ class AppointmentsApproval extends Component{
     }
 
     render(){
-
         return(
             <>
                 {this.GetAwaitingApprovalCount()}
                 <div className="awaiting-approval">
                     {this.ShowAwaitingApprovals()}
                 </div>
+                <>{this.OnApprovalCountChange()}</>
             </>
         )
     }
@@ -30,6 +30,19 @@ class AppointmentsApproval extends Component{
         this.FetchAwaitingApprovals();
     }
     
+    OnApprovalCountChange = () =>{
+        let count = 0;
+        fetch(`http://localhost:3000/appointment-approvals/${this.state.id}`)
+        .then(response => response.json())
+        .then(data => {
+            count = data.length
+            if(count !== this.state.awaitingApprovals.length)
+            {
+                this.componentDidMount();
+            }
+        })
+    }
+
     FetchAwaitingApprovals = () =>{
         fetch(`http://localhost:3000/appointment-approvals/${this.state.id}`)
         .then(response => response.json())
@@ -55,6 +68,7 @@ class AppointmentsApproval extends Component{
                                 <PendingAppointmentCard appointment={app}
                                 pickAppointment={this.props.pickAppointment}
                                 pickedAppointment={this.props.pickedAppointment}
+                                approveAppoint={this.props.approveAppoint}
                                 />
                             )
                         })}
