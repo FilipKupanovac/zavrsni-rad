@@ -28,9 +28,8 @@ class Mechanic extends Component{
                     <AppointmentsApproval id={this.props.user.id} 
                     pickedAppointment={this.state.pickedAppointment} 
                     pickAppointment={this.PickAppointment} 
-                    
-                    /*TEST*/
                     approveAppoint={this.ApproveAppointment}
+                    rejectAppoint={this.RejectAppointment}
                     />
                 </div>
             </>
@@ -68,6 +67,17 @@ class Mechanic extends Component{
                 scheduled_time : date},
                 flag: Math.random()
             })
+        })
+    }
+    RejectAppointment = () =>{
+        let nr = this.state.pickedAppointment.appointment_number
+        fetch(`http://localhost:3000/reject-appointment/${nr}`,{
+            method: 'delete',
+            headers: {'Content-Type':'application/json'}
+        })
+        .then(data => {
+            console.log(data)
+            this.setState({flag:Math.random()})
         })
     }
 }

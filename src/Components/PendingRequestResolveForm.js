@@ -27,7 +27,9 @@ class PendingRequestResolveForm extends Component {
                 <button
                     onClick={() => this.props.approveAppoint(this.state.newDate)}
                 >Potvrdi</button>
-                <button>Odbij zahtjev</button>
+                <button
+                    onClick={() => this.props.rejectAppoint()}
+                >Odbij zahtjev</button>
             </div>
     )}
 

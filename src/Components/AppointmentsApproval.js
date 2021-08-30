@@ -69,6 +69,7 @@ class AppointmentsApproval extends Component{
                                 pickAppointment={this.props.pickAppointment}
                                 pickedAppointment={this.props.pickedAppointment}
                                 approveAppoint={this.props.approveAppoint}
+                                rejectAppoint={this.props.rejectAppoint}
                                 />
                             )
                         })}

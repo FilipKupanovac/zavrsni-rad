@@ -23,6 +23,7 @@ class PendingAppointmentCard extends Component{
                     //TU IDE FORM ZA POTVRDU/IZMJENU/ODBIJANJE ZAHTJEVA
                      ? <PendingRequestResolveForm date={appointment.scheduled_time}
                         approveAppoint={this.props.approveAppoint}
+                        rejectAppoint={this.props.rejectAppoint}
                      />
                      : <></>
                     }
