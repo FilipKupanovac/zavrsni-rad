@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 //Components
 import MechanicInfoCard from './MechanicInfoCard'
 import AppointmentsApproval from './AppointmentsApproval';
+import WaitingDiagnostic from './WaitingDiagnostic'
 //CSS
 
 
@@ -11,10 +12,10 @@ class Mechanic extends Component{
         this.state ={
             name: this.props.user.name,
             id: this.props.user.id,
+            flag: undefined,
             //APPS APPROVAL PART
             pickedAppointment: undefined,
-            //TEST
-            flag: undefined
+            pickedDiagnostic: undefined,
         }
     }
     
@@ -24,7 +25,7 @@ class Mechanic extends Component{
                 <div className="mechanic">
                     <MechanicInfoCard name={this.state.name} email={this.props.user.email}/>
                 </div>
-                <div>
+                <div className="appointments">
                     <AppointmentsApproval id={this.props.user.id} 
                     pickedAppointment={this.state.pickedAppointment} 
                     pickAppointment={this.PickAppointment} 
@@ -32,27 +33,28 @@ class Mechanic extends Component{
                     rejectAppoint={this.RejectAppointment}
                     />
                 </div>
+                <div className="diagnostics">
+                    <WaitingDiagnostic id={this.props.user.id}
+                        pickedDiagnostic={this.state.pickedDiagnostic}
+                        pickDiagnostic={this.PickDiagnostic}
+                    />
+                </div>
             </>
         )
     }
-    
+    //#region Appointment approval
     PickAppointment = (pick) => {
         if(this.state.pickedAppointment !== undefined){
             if(pick.appointment_number !== this.state.pickedAppointment.appointment_number){
-                this.setState({pickedAppointment: pick})
-            }
+                this.setState({pickedAppointment: pick})}
             else{
-                this.setState({pickedAppointment: undefined})
-            }
+                this.setState({pickedAppointment: undefined})}
         }
         else{
             this.setState({pickedAppointment: pick})
         }
     }
     ApproveAppointment = (date) => {
-        //Promijeniti u bazi za odabrani appointment stanje iz pending_request ='Y' u pending_request ='N'
-        //Ponuditi promjenu željenog datuma dijagnostike
-        //(Moguće - odbiti zahtjev)
         fetch('http://localhost:3000/approve-appointment', {
             method: 'put',
             headers: {'Content-Type':'application/json'},
@@ -63,9 +65,8 @@ class Mechanic extends Component{
         })
         .then(res => res.json())
         .then(data =>{
-            this.setState({pickedAppointment: {
-                scheduled_time : date},
-                flag: Math.random()
+            this.setState(
+                {flag: Math.random()
             })
         })
     }
@@ -80,6 +81,18 @@ class Mechanic extends Component{
             this.setState({flag:Math.random()})
         })
     }
+    //#endregion
+    //#region Diagnostic Handling
+    PickDiagnostic = (pick) => {
+        if(this.state.pickedDiagnostic !== undefined){
+            if(pick.appointment_number !== this.state.pickedDiagnostic.appointment_number){
+                this.setState({pickedDiagnostic: pick})}
+            else{
+                this.setState({pickedDiagnostic: undefined})}
+        }
+        else{this.setState({pickedDiagnostic: pick})}
+    }
+    //#endregion
 }
 
 export default Mechanic;

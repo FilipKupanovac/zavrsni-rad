@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import PendingRequestResolveForm from './PendingRequestResolveForm';
 //Components
+import PendingRequestResolveForm from './PendingRequestResolveForm';
 //CSS
 
 class PendingAppointmentCard extends Component{
@@ -20,7 +20,6 @@ class PendingAppointmentCard extends Component{
                 </div>
                 <>
                     {appointment === pickedAppointment 
-                    //TU IDE FORM ZA POTVRDU/IZMJENU/ODBIJANJE ZAHTJEVA
                      ? <PendingRequestResolveForm date={appointment.scheduled_time}
                         approveAppoint={this.props.approveAppoint}
                         rejectAppoint={this.props.rejectAppoint}

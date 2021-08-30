@@ -42,7 +42,6 @@ class AppointmentsApproval extends Component{
             }
         })
     }
-
     FetchAwaitingApprovals = () =>{
         fetch(`http://localhost:3000/appointment-approvals/${this.state.id}`)
         .then(response => response.json())
