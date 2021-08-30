@@ -13,6 +13,7 @@ class PendingAppointmentCard extends Component{
         let {appointment,pickAppointment,pickedAppointment} = this.props;
         //TEST
         let date = new Date(appointment.scheduled_time)
+        date.setMonth(date.getMonth() +1)
         return(
             <>    
                 <div className="appointment-card"
