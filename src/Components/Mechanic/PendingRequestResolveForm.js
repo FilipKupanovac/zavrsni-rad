@@ -11,9 +11,7 @@ class PendingRequestResolveForm extends Component {
         }
     }
     render(){
-        let date = new Date();
-        console.log("DANAŠNJI DATUM: ", date)
-        return(//prvi button otvara input field, drugi button pokreće funk za put request i izmjenu datuma/potvrdu zahtjeva, treći button briše zahtjev
+        return(
             <div>                
                 <button onClick={() => this.ChangeDate()}>Promijeni Datum</button>
                 <>{this.state.dateChange
@@ -24,7 +22,6 @@ class PendingRequestResolveForm extends Component {
                     </input>
                  : <></>
                 }
-                    
                 </>
                 <button
                     onClick={() => this.props.approveAppoint(this.state.newDate)}

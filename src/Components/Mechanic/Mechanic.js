@@ -31,17 +31,25 @@ class Mechanic extends Component{
                     pickAppointment={this.PickAppointment} 
                     approveAppoint={this.ApproveAppointment}
                     rejectAppoint={this.RejectAppointment}
+                    setFlag={this.SetFlag}
                     />
                 </div>
                 <div className="diagnostics">
                     <WaitingDiagnostic id={this.props.user.id}
                         pickedDiagnostic={this.state.pickedDiagnostic}
                         pickDiagnostic={this.PickDiagnostic}
+                        setFlag={this.SetFlag}
                     />
                 </div>
             </>
         )
     }
+
+    //TESTING
+    SetFlag = () => {
+        this.setState({flag: Math.random()})
+    }
+    //TESTING
     //#region Appointment approval
     PickAppointment = (pick) => {
         if(this.state.pickedAppointment !== undefined){
@@ -77,7 +85,6 @@ class Mechanic extends Component{
             headers: {'Content-Type':'application/json'}
         })
         .then(data => {
-            console.log(data)
             this.setState({flag:Math.random()})
         })
     }

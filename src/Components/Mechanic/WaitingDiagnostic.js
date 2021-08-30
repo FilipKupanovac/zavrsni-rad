@@ -56,7 +56,9 @@ class WaitingDiagnostic extends Component{
             if(this.state.showAwaitDiagnostics){
                 return(
                     <>
-                    <p onClick={() => this.ToggleShowAwaitDiags()}>
+                    <p onClick={() => {
+                        this.props.setFlag()
+                        this.ToggleShowAwaitDiags()}}>
                         Prikaži manje</p>
                         {this.state.awaitingDiagnostics.map(diag => {
                             return(
@@ -71,7 +73,9 @@ class WaitingDiagnostic extends Component{
                 )
             }
             else{
-                return(<p onClick={() => this.ToggleShowAwaitDiags()}>
+                return(<p onClick={() => {
+                    this.props.setFlag()
+                    this.ToggleShowAwaitDiags()}}>
                     Prikaži više</p>)
             }
         }
