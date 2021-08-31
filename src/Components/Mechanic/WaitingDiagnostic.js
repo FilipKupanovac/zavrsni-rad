@@ -62,7 +62,8 @@ class WaitingDiagnostic extends Component{
                         Prikaži manje</p>
                         {this.state.awaitingDiagnostics.map(diag => {
                             return(
-                                <DiagnosticCard diagnostic={diag}
+                                <DiagnosticCard key={diag.appointment_number}
+                                    diagnostic={diag}
                                     pickDiagnostic={this.props.pickDiagnostic}
                                     pickedDiagnostic={this.props.pickedDiagnostic}
                                     //approve i reject ekvivalenti iz appsaproval    

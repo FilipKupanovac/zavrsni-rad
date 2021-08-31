@@ -1,4 +1,6 @@
 .vehicle-list{
+    margin: 5px 10px;
     display: flex;
     flex-flow: row;
+    flex-wrap: wrap;
 }

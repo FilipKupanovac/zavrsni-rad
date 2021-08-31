@@ -1,8 +1,8 @@
 .vehicle-card{
     border: 1px solid black;
     border-radius: 5px;
-    margin: 5px 10px; /*kasnije prebaciti u vehiclelist flex div da on ima margin, ostali ništa*/
-    padding: 1%;
+    margin: 1%;
+    padding: 0.5%;
     background-color: aquamarine;
     width: 30%;
 }

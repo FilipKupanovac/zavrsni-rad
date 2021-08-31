@@ -3,6 +3,7 @@ import React, {Component} from 'react';
 import VehicleList from './VehicleList'
 import SubmitScheduleForm from './SubmitScheduleForm'
 import ScheduledAppointments from './ScheduledAppointments';
+import NewVehicle from './NewVehicle';
 //CSS
 import '../../CSS/Driver.css'
 class Driver extends Component {
@@ -11,6 +12,9 @@ class Driver extends Component {
         this.state = {
             name: this.props.user.name,
             ownerId: this.props.user.id,
+            //TEST
+            addVehicle: false,
+            //TEST
             pickedVehicle: undefined,
             mechanics: undefined,
             submitAvailable: true,
@@ -26,8 +30,20 @@ class Driver extends Component {
     render(){
         return(
             <>
-                <div>
+                <div className="driver-tab">
                     <p>Driver: {this.state.name}</p>
+                    <button style={this.state.addVehicle ? {display:"none"} :{}}
+                     onClick={() => this.setState({addVehicle: true})}
+                     className="last">Add new vehicle</button>
+                </div>
+                <div>
+                    {this.state.addVehicle
+                    ? <NewVehicle id={this.state.ownerId}
+                        toggleAddVehicle = {this.ToggleAddVehicleAvailable}
+                        setFlag={this.SetFlag}
+                      />
+                    : <></>
+                    }
                 </div>
                 <VehicleList
                     id={this.props.user.id}
@@ -55,6 +71,7 @@ class Driver extends Component {
                 <>
                     {this.ShowMechanics()}
                 </>
+
             </>
         )
     }
@@ -90,7 +107,6 @@ class Driver extends Component {
         this.setState({problemInput: event.target.value})
     }
     //#endregion
-
 
     PickVehicle = (pick) => {
         if(this.state.pickedVehicle !== undefined){
@@ -148,6 +164,7 @@ class Driver extends Component {
                             ? false : true})
     }
     TrySubmitSchedule = () => {
+        console.log("Šaljem Datum ", this.state.dateInput)
         let {pickedVehicle,mechanicInput, dateInput} = this.state;
         if(pickedVehicle !== undefined && mechanicInput !== undefined
             && dateInput !== undefined && dateInput !== "")
@@ -158,6 +175,12 @@ class Driver extends Component {
 
         }
     }
-    
+    ToggleAddVehicleAvailable = () => {
+        this.setState({addVehicle:false})
+    }
+    //Testing
+    SetFlag = () =>{
+        this.setState({flag:Math.random()})
+    }
 }
 export default Driver;

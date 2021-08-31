@@ -66,7 +66,8 @@ class AppointmentsApproval extends Component{
                             Prikaži manje</p>
                         {this.state.awaitingApprovals.map(app => {
                             return(
-                                <PendingAppointmentCard appointment={app}
+                                <PendingAppointmentCard key={app.appointment_number}
+                                appointment={app}
                                 pickAppointment={this.props.pickAppointment}
                                 pickedAppointment={this.props.pickedAppointment}
                                 approveAppoint={this.props.approveAppoint}
