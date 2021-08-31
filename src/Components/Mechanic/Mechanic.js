@@ -45,11 +45,9 @@ class Mechanic extends Component{
         )
     }
 
-    //TESTING
     SetFlag = () => {
         this.setState({flag: Math.random()})
     }
-    //TESTING
     //#region Appointment approval
     PickAppointment = (pick) => {
         if(this.state.pickedAppointment !== undefined){

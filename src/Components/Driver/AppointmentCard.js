@@ -4,10 +4,12 @@ import React from 'react';
 //CSS
 
 const AppointmentCard = ({appointment}) =>{
+    let date = new Date(appointment.scheduled_time)
+    date.setMonth(date.getMonth())
     return(
         <div className="appointment-card">
             <p>{appointment.manufacturer} {appointment.model}</p>
-            <p>Scheduled: {appointment.scheduled_time}</p>
+            <p>Scheduled: {date.getDate()}.{date.getMonth() +1}.{date.getFullYear()}.</p>
         </div>
     )
 }

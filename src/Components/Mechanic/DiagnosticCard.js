@@ -11,7 +11,6 @@ class DiagnosticCard extends Component{
     render(){
         let {diagnostic, pickDiagnostic,pickedDiagnostic} = this.props;
         let date = new Date(diagnostic.scheduled_time)
-        console.log("diag date: ", date)
         return(
             <>
                 <div className="appointment-card"
