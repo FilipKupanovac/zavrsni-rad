@@ -22,9 +22,10 @@ class Mechanic extends Component{
     render(){
         return(
             <>
-                <div className="mechanic">
-                    <MechanicInfoCard name={this.state.name} email={this.props.user.email}/>
-                </div>
+                <>
+                    <MechanicInfoCard name={this.state.name} email={this.props.user.email} setFlag={this.SetFlag}
+                    />
+                </>
                 <div className="appointments">
                     <AppointmentsApproval id={this.props.user.id} 
                     pickedAppointment={this.state.pickedAppointment} 

@@ -1,12 +1,12 @@
 import React, {Component} from 'react';
 //Components
 //CSS
-import '../../CSS/Driver.css'
 
-class NewVehicle extends Component {
+class NewVehicleMech extends Component {
     constructor(props){
         super(props);
         this.state = {
+            driverId: undefined,
             manufacturer: undefined,
             model:undefined,
             year:undefined,
@@ -21,7 +21,10 @@ class NewVehicle extends Component {
     render(){
         return(
             <div>
-                <p>Input your vehicle's information</p>
+                <p>Input new vehicle's information</p>
+                <label>Owner</label>
+                <input onChange={this.onOwnerChange}
+                type="text"></input>{/* //Endless possibilities */}
                 <label>Manufacturer</label>
                 <input onChange={this.onManufacturerChange} type="text"></input>
                 <label>Model</label>
@@ -51,6 +54,9 @@ class NewVehicle extends Component {
     }
 
     //#region input trackers
+    onOwnerChange = (event) => {
+        this.setState({driverId: event.target.value})
+    }
     onManufacturerChange = (event) =>{
         this.setState({manufacturer:event.target.value})
     }
@@ -97,17 +103,18 @@ class NewVehicle extends Component {
     //#endregion
     //Fetch post method to add new car
     AddNewVehicle = () =>{
-        let {manufacturer,model,year,serial,drivetrain,horsepower,license}=this.state;
+        let {driverId,manufacturer,model,year,serial,drivetrain,horsepower,license}=this.state;
 
         if(this.ManufacModelCheck() && this.YearCheck() 
             && this.SerialCheck() && this.DrivetrainCheck() 
-            && horsepower>0 && license !== undefined)
+            && horsepower>0 && license !== undefined
+            && driverId !== undefined)
         {
             fetch(`http://localhost:3000/add-vehicle`, {
                 method:'post',
                 headers:{'Content-Type':'application/json'},
                 body: JSON.stringify({
-                    id: this.props.id,
+                    id: driverId,
                     manufacturer: manufacturer,
                     model: model,
                     year: year,
@@ -122,7 +129,8 @@ class NewVehicle extends Component {
                 if(data.status !== 400)
                     this.props.setFlag()
             })
+            .catch(err => console.log)
         }
     }
 }
-export default NewVehicle;
+export default NewVehicleMech;

@@ -10,7 +10,8 @@ class VehicleList extends Component {
         super(props);
         this.state = {
             ownerId: this.props.id,
-            ownerCars: ''
+            ownerCars: [], //''
+            count: 0
         }
     }
 
@@ -18,15 +19,33 @@ class VehicleList extends Component {
         return(
             <div className="vehicle-list">
                 <>{this.IterateCars()}</>
+                {/* TEST */}
+                <>{this.OnVehicleCountChange()}</>
             </div>
         )
     }
+    //#region test
+    OnVehicleCountChange = () => {
+        let count = 0;
+        fetch(`http://localhost:3000/cars/${this.state.ownerId}`)
+        .then(response => response.json())
+        .then(data => {
+            count = data.length
+            if(count !== this.state.ownerCars.length)
+            {
+                this.componentDidMount();
+            }
+        })
+    }
+    //#endregion
 
     FetchCars = () => {
         fetch(`http://localhost:3000/cars/${this.state.ownerId}`)
         .then(response => response.json())
         .then(cars => {
             this.setState({ownerCars: cars})
+            //test
+            this.setState({count:cars.length})
         })
     }
 

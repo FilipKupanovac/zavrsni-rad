@@ -1,0 +1,12 @@
+.mechanic{
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+.info p{
+    margin-left: min(15px,2%);
+}
+.last{
+    margin-left: auto;
+    margin-right: 10px;
+}

@@ -28,8 +28,7 @@ class ScheduledAppointments extends Component{
                             <AppointmentCard key={appointment.appointment_number} appointment={appointment}
                             />
                         )
-                    })
-                    }
+                    })}
                 </div>
             )
         }

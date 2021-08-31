@@ -1,14 +1,43 @@
-import React from 'react';
-
+import React, { Component } from 'react';
+//Components
+import NewVehicleMech from './NewVehicleMech'
 //CSS
+import '../../CSS/MechanicInfoCard.css'
 
-const MechanicInfoCard = ({name,email}) => {
-    return(
-        <>
-            <p>{name}</p>
-            <p>{email}</p>
-        </>
-    )
+class MechanicInfoCard extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            addVehicle: false,
+        }
+    }
+    render(){
+        return(
+            <>
+            <div className="mechanic">
+                <div className="info">        
+                    <p>{this.props.name}</p>
+                    <p>{this.props.email}</p>
+                </div>
+                <button style={this.state.addVehicle ? {display:"none"} :{}}
+                     onClick={() => this.setState({addVehicle: true})}
+                     className="last">Add new vehicle</button>
+            </div>
+            <div>
+                {this.state.addVehicle
+                ? <NewVehicleMech
+                    toggleAddVehicle = {this.ToggleAddVehicleAvailable}
+                    setFlag={this.props.SetFlag}
+                  />
+                : <></>
+                }
+            </div>
+            </>
+        )
+    }
+    ToggleAddVehicleAvailable = () => {
+        this.setState({addVehicle:false})
+    }
 }
 
 export default MechanicInfoCard;

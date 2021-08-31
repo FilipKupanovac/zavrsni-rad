@@ -12,9 +12,8 @@ class Driver extends Component {
         this.state = {
             name: this.props.user.name,
             ownerId: this.props.user.id,
-            //TEST
             addVehicle: false,
-            //TEST
+
             pickedVehicle: undefined,
             mechanics: undefined,
             submitAvailable: true,
@@ -178,7 +177,6 @@ class Driver extends Component {
     ToggleAddVehicleAvailable = () => {
         this.setState({addVehicle:false})
     }
-    //Testing
     SetFlag = () =>{
         this.setState({flag:Math.random()})
     }
