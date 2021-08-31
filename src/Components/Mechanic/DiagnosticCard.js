@@ -10,12 +10,14 @@ class DiagnosticCard extends Component{
     }
     render(){
         let {diagnostic, pickDiagnostic,pickedDiagnostic} = this.props;
+        let date = new Date(diagnostic.scheduled_time)
+        console.log("diag date: ", date)
         return(
             <>
                 <div className="appointment-card"
                     onClick={() => pickDiagnostic(diagnostic)}
                 >
-                    <p>DIAGNOSTIC: {diagnostic.appointment_number}, {diagnostic.scheduled_time}, {diagnostic.mechanic}</p>
+                    <p>DIAGNOSTIC: {diagnostic.appointment_number}, Datum: {date.getDate()}. {date.getMonth()+1}. {date.getFullYear()}. , Mehaničar:{diagnostic.mechanic}</p>
                 </div>
                 <>
                     {diagnostic === pickedDiagnostic
