@@ -126,14 +126,16 @@ class Register extends Component{
                     this.props.getContent()
                 }
             }) */
+            .then(resp => resp.json())
             .then(resp =>{
+                console.log("RESPONSE REGISTER: ", resp.status,"\nRES: ", resp)
                 if(resp.status !== 400){
                     fetch('http://localhost:3000/signin', {
                         method: 'post',
                         headers: {'Content-Type': 'application/json'},
                         body: JSON.stringify({
-                            email: email,
-                            password: password
+                            email: resp.email,
+                            password: resp.password
                         })
                     }).then(res => {
                         let odg = res.json();
