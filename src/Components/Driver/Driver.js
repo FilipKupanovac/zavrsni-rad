@@ -64,9 +64,13 @@ class Driver extends Component {
                     />
                 </div>
                 <div className="appointments">
-                    <ScheduledAppointments key={this.state.key} id={this.state.ownerId}/>
+                    <p>Appointments</p>
+                    <ScheduledAppointments key={this.state.key} id={this.state.ownerId} pending={/**/'Y'} />
                 </div>
-
+                <div className="appointments">
+                    <p>Diagnostics</p>
+                    <ScheduledAppointments key={this.state.key} id={this.state.ownerId} pending={/**/'N'} />
+                </div>
                 <>
                     {this.ShowMechanics()}
                 </>

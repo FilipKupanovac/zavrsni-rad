@@ -42,7 +42,9 @@ class ScheduledAppointments extends Component{
         this.FetchAppointments();
     }
     FetchAppointments = () => {
-        fetch(`http://localhost:3000/previous-appointments/${this.state.ownerId}`)
+        fetch(`http://localhost:3000/previous-appointments/${this.state.ownerId}
+        /${this.props.pending}
+        `)
         .then(response => response.json())
         .then(appointments => {
             this.setState({prevAppointments: appointments})
