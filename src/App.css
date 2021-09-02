@@ -49,6 +49,7 @@ nav{
   border-radius: 0.75rem;
 }
 fieldset{
+  margin: 0 1rem;
   margin-top: 10px;
   border-radius: 10px;
   box-shadow: #2f908d67 2px 1px;
@@ -112,4 +113,13 @@ button{
 
 .validation-label{
   min-width: 130px;
+}
+.appointments, .diagnostics, .picked-vehicle{
+  border: 1.5px solid black;
+  border-radius: 10px;
+  margin-top: 1.5rem;
+}
+
+.awaiting-diagnostics:last-child, .awaiting-approval:last-child{
+  margin-bottom: .5em;
 }

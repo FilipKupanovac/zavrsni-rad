@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 //Components
 
 //CSS
+import '../../CSS/SubmitScheduleForm.css'
 
 class SubmitScheduleFrom extends Component{
     constructor(props){
@@ -16,7 +17,7 @@ class SubmitScheduleFrom extends Component{
         if(this.props.pickedVehicle !== undefined){
             if(this.props.submitAvailable){
                 return(
-                    <button
+                    <button className="submit-schedule-button"
                         onClick={() => this.props.toggleSubmitAvailable()}
                     >Schedule new appointment</button>
                 )

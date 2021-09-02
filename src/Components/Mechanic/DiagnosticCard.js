@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import DiagnosticForm from './DiagnosticForm';
 //Components
 //CSS
 
@@ -13,6 +14,7 @@ class DiagnosticCard extends Component{
         let date = new Date(diagnostic.scheduled_time)
         return(
             <>
+            <hr/>
                 <div className="appointment-card"
                     onClick={() => pickDiagnostic(diagnostic)}
                 >
@@ -20,7 +22,7 @@ class DiagnosticCard extends Component{
                 </div>
                 <>
                     {diagnostic === pickedDiagnostic
-                     ? <p>NE PITAJ ME NIŠTA</p>
+                     ? <DiagnosticForm/>//<p>NE PITAJ ME NIŠTA</p>
                      : <></>
                     }
                 </>

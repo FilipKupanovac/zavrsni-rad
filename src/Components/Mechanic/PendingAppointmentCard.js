@@ -15,7 +15,8 @@ class PendingAppointmentCard extends Component{
         let date = new Date(appointment.scheduled_time)
         date.setMonth(date.getMonth())
         return(
-            <>    
+            <>  
+            <hr/>  
                 <div className="appointment-card"
                     onClick={() => pickAppointment(appointment)}
                 >

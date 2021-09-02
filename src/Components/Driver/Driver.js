@@ -48,28 +48,30 @@ class Driver extends Component {
                     id={this.props.user.id}
                     pickvehicle={this.PickVehicle}
                 />
-                <div className="picked-vehicle">
-                    {this.state.pickedVehicle !== undefined 
-                        ? <p>Odabrali ste vozilo {this.state.pickedVehicle.manufacturer} {this.state.pickedVehicle.model}</p>
-                        : <></>}
-                </div>
-                <div className="submit-form">
-                    <SubmitScheduleForm submitAvailable = {this.state.submitAvailable}
-                        toggleSubmitAvailable={this.ToggleSubmitAvailable}
-                        pickedVehicle={this.state.pickedVehicle}
-                        onDateChange={this.OnDateChange}
-                        onMechanicChange={this.FetchMechanics}
-                        onProblemChange={this.OnProblemChange}
-                        trySubmit={this.TrySubmitSchedule}
-                    />
+                <div className={this.state.pickedVehicle !== undefined? "picked-vehicle": ""}>
+                    <div className="picked-vehicle-info">
+                        {this.state.pickedVehicle !== undefined 
+                            ? <p>Odabrali ste vozilo {this.state.pickedVehicle.manufacturer} {this.state.pickedVehicle.model}</p>
+                            : <></>}
+                    </div>
+                    <div className="submit-form">
+                        <SubmitScheduleForm submitAvailable = {this.state.submitAvailable}
+                            toggleSubmitAvailable={this.ToggleSubmitAvailable}
+                            pickedVehicle={this.state.pickedVehicle}
+                            onDateChange={this.OnDateChange}
+                            onMechanicChange={this.FetchMechanics}
+                            onProblemChange={this.OnProblemChange}
+                            trySubmit={this.TrySubmitSchedule}
+                        />
+                    </div>
                 </div>
                 <div className="appointments">
                     <p>Appointments</p>
-                    <ScheduledAppointments key={this.state.key} id={this.state.ownerId} pending={/**/'Y'} />
+                    <ScheduledAppointments key={this.state.key} id={this.state.ownerId} pending={'Y'} />
                 </div>
                 <div className="appointments">
                     <p>Diagnostics</p>
-                    <ScheduledAppointments key={this.state.key} id={this.state.ownerId} pending={/**/'N'} />
+                    <ScheduledAppointments key={this.state.key} id={this.state.ownerId} pending={'N'} />
                 </div>
                 <>
                     {this.ShowMechanics()}
