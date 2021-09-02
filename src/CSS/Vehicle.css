@@ -1,8 +1,24 @@
 .vehicle-card{
-    border: 1px solid black;
-    border-radius: 5px;
+    border: 0px solid transparent;
+    border-radius: 8px;
     margin: 1%;
     padding: 0.5%;
-    background-color: aquamarine;
+    background-color: #50a8a5;
     width: 30%;
+    cursor: pointer;
+}
+.vehicle-card p{padding-left: 10px;}
+.submitlabel{
+    min-width: 150px;
+}
+.problem-input{
+    width: 100%;
+}
+.flex-end{
+    display: flex;
+    justify-content: flex-end;
+    padding: 5px 10px;
+}
+.flex-end button{
+    margin-right: 1.25rem;
 }

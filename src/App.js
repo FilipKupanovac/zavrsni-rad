@@ -27,7 +27,7 @@ class App extends Component {
     return(
       <>
         <Navigation isSignedIn={this.state.isSignedIn} signOut={this.SignOut} setRoute={this.SetRoute}/>
-        <div className=''>
+        <div className='content'>
           <>{this.GetContent()}</>
         </div>
         {/* po volji neko podnožje */}

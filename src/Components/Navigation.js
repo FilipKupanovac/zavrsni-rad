@@ -7,7 +7,7 @@ const Navigation = ({isSignedIn,signOut,setRoute}) =>{
     if(isSignedIn){
         return(
             <nav>
-                <p onClick = {() => {
+                <p className="clickable" onClick = {() => {
                     signOut()
                     setRoute('signin')
                     }}>Sign Out</p>
@@ -17,8 +17,8 @@ const Navigation = ({isSignedIn,signOut,setRoute}) =>{
     else{
         return(
             <nav>
-                <p onClick = {() => setRoute('signin')}>Signin</p>
-                <p onClick = {() => setRoute('register')}>Register</p>
+                <p className="clickable" onClick = {() => setRoute('signin')}>Signin</p>
+                <p className="clickable" onClick = {() => setRoute('register')}>Register</p>
             </nav>
         )
     }

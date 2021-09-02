@@ -25,30 +25,29 @@ class SubmitScheduleFrom extends Component{
             return(
                 <div>
                     <fieldset>
-                        <div>
-                            <label>Preffered date</label>
+                        <div className="fill-width pa05 flex">
+                            <label className="submitlabel">Preffered date</label>
                             <input
                                 onChange={this.props.onDateChange}
                                 type="date"
-                                min=""
                             ></input>
                         </div>
-                        <div>
-                            <label>Mechanic</label>
+                        <div className="fill-width pa05 flex">
+                            <label className="submitlabel">Mechanic</label>
                             <input
                                 onChange={this.props.onMechanicChange} 
                                 placeholder="Start typing preffered mechanic"
                                 type="search" list="mylist"></input>
                         </div>
-                        <div>
-                            <label>Problem explanation</label>
-                            <input
+                        <div className="fill-width pa05 flex">
+                            <label className="submitlabel">Problem explanation</label>
+                            <input className="problem-input"
                                 onChange={this.props.onProblemChange}
                                 type="text" placeholder="Please describe what's wrong with your vehicle (optional)"
                             ></input>
                         </div>
                     </fieldset>
-                    <div>
+                    <div className="flex-end">
                         <button
                             onClick={() => this.props.trySubmit()}
                         >

@@ -20,35 +20,41 @@ class Register extends Component{
             <div>
                 <fieldset>
                     <p>Register</p>
-                    <div>
-                        <label>Full Name</label>
-                        <input
-                            onChange={this.onNameChange}
-                            type="text" name="name"
-                        ></input>
+                    <div className="register-form">
+                        <div className="half-width">
+                            <div className="fill-width pa05 flex">
+                                <label>Full Name</label>
+                                <input
+                                    onChange={this.onNameChange}
+                                    type="text" name="name"
+                                ></input>
+                            </div>
+                            <div className="fill-width pa05 flex">
+                                <label>Email</label>
+                                <input
+                                    onChange={this.onEmailChange}
+                                    type="email" name="email-address"
+                                ></input>
+                            </div>
+                            <div className="fill-width pa05 flex">
+                                <label>Password</label>
+                                <input
+                                    onChange={this.onPasswordChange}
+                                    type="password" name="password"
+                                ></input>
+                            </div>
+                        </div>
+                        <div className="half-width">
+                            <div className="fill-width pa05">
+                                <input
+                                    onChange={this.onCheckboxCheck}
+                                    type="checkbox" name="mechanic-check" value="mechanic"
+                                ></input>
+                                <label name="mechanic-check">I'm a mechanic</label>
+                            </div>
+                            <>{this.ShowMechanicInputField()}</>
+                        </div>
                     </div>
-                    <div>
-                        <label>Email</label>
-                        <input
-                            onChange={this.onEmailChange}
-                            type="email" name="email-address"
-                        ></input>
-                    </div>
-                    <div>
-                        <label>Password</label>
-                        <input
-                            onChange={this.onPasswordChange}
-                            type="password" name="password"
-                        ></input>
-                    </div>
-                    <div>
-                        <input
-                            onChange={this.onCheckboxCheck}
-                            type="checkbox" name="mechanic-check" value="mechanic"
-                        ></input>
-                        <label name="mechanic-check">I'm a mechanic</label>
-                    </div>
-                    <>{this.ShowMechanicInputField()}</>
                 </fieldset>
                 <button
                     onClick={this.Register}
@@ -86,8 +92,8 @@ class Register extends Component{
     ShowMechanicInputField = () =>{
         if(this.state.checkboxState === true){
             return(
-                    <div>
-                        <label>Validation Code</label>
+                    <div className="fill-width pa05 flex">
+                        <label className="validation-label">Validation Code</label>
                         <input
                             onChange={this.onValidationCodeChange}
                             type="password" name="VCode"

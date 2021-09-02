@@ -16,14 +16,15 @@ class Signin extends Component{
         return(
             <div>
                 <fieldset>
-                    <div>
+                    <p>Sign in</p>
+                    <div className="fill-width pa05 flex">
                         <label>Email</label>
                         <input
                             onChange={this.onEmailChange}
                             type="email" name="email-address"
                         ></input>
                     </div>
-                    <div>
+                    <div className="fill-width pa05 flex">
                         <label>Password</label>
                         <input
                             onChange={this.onPasswordChange}
