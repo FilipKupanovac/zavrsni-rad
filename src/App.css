@@ -143,3 +143,6 @@ button{
 .warning{
   background: linear-gradient(to left, #FD7F2C, #FD9346);
 }
+.padding-block{
+  padding: 1rem .75rem;
+}
