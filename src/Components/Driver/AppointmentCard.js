@@ -7,7 +7,7 @@ const AppointmentCard = ({appointment}) =>{
     let date = new Date(appointment.scheduled_time)
     date.setMonth(date.getMonth())
     return(
-        <div className="appointment-card">
+        <div className="appointment-driver">
             <hr/>
             <p>{appointment.manufacturer} {appointment.model}</p>
             <p>Scheduled: {date.getDate()}.{date.getMonth() +1}.{date.getFullYear()}.</p>

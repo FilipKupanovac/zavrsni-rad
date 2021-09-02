@@ -12,17 +12,18 @@ class DiagnosticCard extends Component{
     render(){
         let {diagnostic, pickDiagnostic,pickedDiagnostic} = this.props;
         let date = new Date(diagnostic.scheduled_time)
+        let today=new Date()
         return(
             <>
             <hr/>
-                <div className="appointment-card"
+                <div className={today>date? "appointment-card warning" : "appointment-card" /* JOŠ ASSIGNAJ GORNJE RUBOVE BORDER-RADIUS, A U DIAGNOSTICFORM.JS DONJE RUBOVE */}
                     onClick={() => pickDiagnostic(diagnostic)}
                 >
                     <p>DIAGNOSTIC: {diagnostic.appointment_number}, Datum: {date.getDate()}. {date.getMonth()+1}. {date.getFullYear()}. , Mehaničar:{diagnostic.mechanic}</p>
                 </div>
                 <>
                     {diagnostic === pickedDiagnostic
-                     ? <DiagnosticForm/>//<p>NE PITAJ ME NIŠTA</p>
+                     ? <DiagnosticForm warning={today>date}/>
                      : <></>
                     }
                 </>

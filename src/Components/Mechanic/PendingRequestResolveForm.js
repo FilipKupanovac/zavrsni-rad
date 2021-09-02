@@ -12,7 +12,7 @@ class PendingRequestResolveForm extends Component {
     }
     render(){
         return(
-            <div>                
+            <div className={this.props.warning? "warning": ""}>                
                 <button onClick={() => this.ChangeDate()}>Promijeni Datum</button>
                 <>{this.state.dateChange
                  ?  <input

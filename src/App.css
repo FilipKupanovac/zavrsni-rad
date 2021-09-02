@@ -72,7 +72,12 @@ input{
   border: 1px solid;
   border-radius: 4px;
 }
-
+hr{
+  margin: 0;
+  height: 0.25rem;
+  background-color: #d4d4d4;
+  border: 0 solid white;
+}
 nav p{
   margin-right: 1.25rem;
 }
@@ -122,4 +127,19 @@ button{
 
 .awaiting-diagnostics:last-child, .awaiting-approval:last-child{
   margin-bottom: .5em;
+}
+
+.appointment-card{
+  padding-block-start: 1em;
+  padding-block-end: 1em;
+}
+.appointment-card p{
+  margin: 0;
+}
+.submit-button{
+  padding: 5px 10px;
+  margin: .75rem;
+}
+.warning{
+  background: linear-gradient(to left, #FD7F2C, #FD9346);
 }

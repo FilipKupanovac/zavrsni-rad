@@ -11,8 +11,9 @@ class DiagnosticForm extends Component{
     }
     render(){
         return(
-            <div>
-                <button onClick={()=>this.setState({runDiagnostic: true})}>Započni dijagnostiku
+            <div className={this.props.warning? "warning": ""}>
+                <button className="submit-button"
+                onClick={()=>this.setState({runDiagnostic: true})}>Započni dijagnostiku
                 </button><br/>
                 <>{this.state.runDiagnostic 
                 ? <p>Unesite kod s dijagnostičkog uređaja:</p>

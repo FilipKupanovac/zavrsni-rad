@@ -11,20 +11,20 @@ class PendingAppointmentCard extends Component{
     }
     render(){
         let {appointment,pickAppointment,pickedAppointment} = this.props;
-        //TEST
         let date = new Date(appointment.scheduled_time)
-        date.setMonth(date.getMonth())
+        let today=new Date()
         return(
             <>  
-            <hr/>  
-                <div className="appointment-card"
+                <hr/>  
+                <div className={today>date? "appointment-card warning" : "appointment-card"}
                     onClick={() => pickAppointment(appointment)}
                 >
                     <p>APPOINTMENT: {appointment.appointment_number}, Datum: {date.getDate()}. {date.getMonth()+1}. {date.getFullYear()}. , Mehaničar: {appointment.mechanic}</p>
                 </div>
                 <>
                     {appointment === pickedAppointment 
-                     ? <PendingRequestResolveForm date={appointment.scheduled_time}
+                     ? <PendingRequestResolveForm warning={today>date}
+                        date={appointment.scheduled_time}
                         approveAppoint={this.props.approveAppoint}
                         rejectAppoint={this.props.rejectAppoint}
                      />
