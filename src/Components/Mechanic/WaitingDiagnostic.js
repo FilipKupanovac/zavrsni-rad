@@ -56,9 +56,10 @@ class WaitingDiagnostic extends Component{
             if(this.state.showAwaitDiagnostics){
                 return(
                     <>
-                    <p onClick={() => {
-                        this.props.setFlag()
-                        this.ToggleShowAwaitDiags()}}>
+                    <p className="pointer"
+                        onClick={() => {
+                            this.props.setFlag()
+                            this.ToggleShowAwaitDiags()}}>
                         Prikaži manje</p>
                         {this.state.awaitingDiagnostics.map(diag => {
                             return(
@@ -66,7 +67,8 @@ class WaitingDiagnostic extends Component{
                                     diagnostic={diag}
                                     pickDiagnostic={this.props.pickDiagnostic}
                                     pickedDiagnostic={this.props.pickedDiagnostic}
-                                    //approve i reject ekvivalenti iz appsaproval    
+                                    //approve i reject ekvivalenti iz appsaproval
+                                    runDiagnostic={this.props.runDiagnostic}
                                     />
                                 )
                             })}
@@ -74,9 +76,10 @@ class WaitingDiagnostic extends Component{
                 )
             }
             else{
-                return(<p onClick={() => {
-                    this.props.setFlag()
-                    this.ToggleShowAwaitDiags()}}>
+                return(<p className="pointer"
+                    onClick={() => {
+                        this.props.setFlag()
+                        this.ToggleShowAwaitDiags()}}>
                     Prikaži više</p>)
             }
         }

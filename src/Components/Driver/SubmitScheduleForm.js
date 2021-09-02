@@ -3,7 +3,7 @@ import React, {Component} from 'react';
 
 //CSS
 
-class SubmitScheduleFrom extends Component{
+class SubmitScheduleForm extends Component{
     constructor(props){
         super(props);
         this.state = {
@@ -66,4 +66,4 @@ class SubmitScheduleFrom extends Component{
         
     }
 }
-export default SubmitScheduleFrom
+export default SubmitScheduleForm

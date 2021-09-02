@@ -40,6 +40,7 @@ class Mechanic extends Component{
                         pickedDiagnostic={this.state.pickedDiagnostic}
                         pickDiagnostic={this.PickDiagnostic}
                         setFlag={this.SetFlag}
+                        runDiagnostic={this.RunDiagnostic}
                     />
                 </div>
             </>
@@ -72,9 +73,7 @@ class Mechanic extends Component{
         })
         .then(res => res.json())
         .then(data =>{
-            this.setState(
-                {flag: Math.random()
-            })
+            this.setState({flag: Math.random()})
         })
     }
     RejectAppointment = () =>{
@@ -98,7 +97,11 @@ class Mechanic extends Component{
         }
         else{this.setState({pickedDiagnostic: pick})}
     }
+    RunDiagnostic = (code) => {
+        console.log("Unijeli ste kod za dijagnostiku:",code)
+    }
     //#endregion
+    
 }
 
 export default Mechanic;

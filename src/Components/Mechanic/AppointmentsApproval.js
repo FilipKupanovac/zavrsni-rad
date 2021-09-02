@@ -60,9 +60,10 @@ class AppointmentsApproval extends Component{
             if(this.state.showAwaitApprovals){
                 return(
                     <>
-                        <p onClick={() => {
-                            this.props.setFlag()
-                            this.ToggleShowAwaitApprovals()}}>
+                        <p className="pointer"
+                            onClick={() => {
+                                this.props.setFlag()
+                                this.ToggleShowAwaitApprovals()}}>
                             Prikaži manje</p>
                         {this.state.awaitingApprovals.map(app => {
                             return(
@@ -79,9 +80,10 @@ class AppointmentsApproval extends Component{
             )}
             else{
                 return(
-                    <p onClick={() => {
-                        this.props.setFlag()
-                        this.ToggleShowAwaitApprovals()}}>
+                    <p className="pointer"
+                        onClick={() => {
+                            this.props.setFlag()
+                            this.ToggleShowAwaitApprovals()}}>
                         Prikaži više
                     </p>
                 )

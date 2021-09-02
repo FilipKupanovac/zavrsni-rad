@@ -82,7 +82,7 @@ nav p{
   margin-right: 1.25rem;
 }
 
-button{
+button, .pointer{
   cursor: pointer;
 }
 
@@ -133,7 +133,7 @@ button{
   padding-block-start: 1em;
   padding-block-end: 1em;
 }
-.appointment-card p{
+.appointment-card p, .nomarg{
   margin: 0;
 }
 .submit-button{

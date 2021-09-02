@@ -169,12 +169,10 @@ class Driver extends Component {
                             ? false : true})
     }
     TrySubmitSchedule = () => {
-        console.log("Šaljem Datum ", this.state.dateInput)
         let {pickedVehicle,mechanicInput, dateInput} = this.state;
         if(pickedVehicle !== undefined && mechanicInput !== undefined
             && dateInput !== undefined && dateInput !== "")
         {
-            console.log("Poslano")
             this.SendScheduleRequest();
             this.ToggleSubmitAvailable();
 

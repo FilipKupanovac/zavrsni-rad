@@ -20,10 +20,15 @@ class DiagnosticCard extends Component{
                     onClick={() => pickDiagnostic(diagnostic)}
                 >
                     <p>DIAGNOSTIC: {diagnostic.appointment_number}, Datum: {date.getDate()}. {date.getMonth()+1}. {date.getFullYear()}. , Mehaničar:{diagnostic.mechanic}</p>
+                    <>{diagnostic.note !== null
+                     ? <p>Opis problema: {diagnostic.note}</p>
+                     : <></>
+                    }</>
                 </div>
                 <>
                     {diagnostic === pickedDiagnostic
-                     ? <DiagnosticForm warning={today>date}/>
+                     ? <DiagnosticForm warning={today>date}
+                       runDiagnostic ={this.props.runDiagnostic}/>
                      : <></>
                     }
                 </>
