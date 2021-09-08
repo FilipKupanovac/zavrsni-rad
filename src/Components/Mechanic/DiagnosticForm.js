@@ -7,15 +7,12 @@ class DiagnosticForm extends Component{
         super(props);
         this.state = {
             runDiagnostic: false,
-            diagnosticOutput: undefined
+            diagnosticOutput: undefined,
         }
     }
     render(){
         return(
             <div className={this.props.warning? "warning": ""}>
-                {/* <button className="submit-button" 
-                onClick={()=>this.setState({runDiagnostic: true})}>Započni dijagnostiku
-                </button><br/> */}
                 <>{this.state.runDiagnostic 
                 ? <>{this.RunDiagnostic()}</>
                 :  <button className="submit-button" 

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import DiagnosticForm from './DiagnosticForm';
 //Components
+import DiagnosticForm from './DiagnosticForm';
 //CSS
 
 class DiagnosticCard extends Component{
@@ -16,7 +16,7 @@ class DiagnosticCard extends Component{
         return(
             <>
             <hr/>
-                <div className={today>date? "appointment-card warning" : "appointment-card" /* JOŠ ASSIGNAJ GORNJE RUBOVE BORDER-RADIUS, A U DIAGNOSTICFORM.JS DONJE RUBOVE */}
+                <div className={today>date? "appointment-card warning" : "appointment-card"}
                     onClick={() => pickDiagnostic(diagnostic)}
                 >
                     <p>DIAGNOSTIC: {diagnostic.appointment_number}, Datum: {date.getDate()}. {date.getMonth()+1}. {date.getFullYear()}. , Mehaničar:{diagnostic.mechanic}</p>
@@ -28,7 +28,8 @@ class DiagnosticCard extends Component{
                 <>
                     {diagnostic === pickedDiagnostic
                      ? <DiagnosticForm warning={today>date}
-                       runDiagnostic ={this.props.runDiagnostic}/>
+                       runDiagnostic ={this.props.runDiagnostic}
+                       />
                      : <></>
                     }
                 </>

@@ -67,7 +67,6 @@ class WaitingDiagnostic extends Component{
                                     diagnostic={diag}
                                     pickDiagnostic={this.props.pickDiagnostic}
                                     pickedDiagnostic={this.props.pickedDiagnostic}
-                                    //approve i reject ekvivalenti iz appsaproval
                                     runDiagnostic={this.props.runDiagnostic}
                                     />
                                 )

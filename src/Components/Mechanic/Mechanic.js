@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 //Components
-import MechanicInfoCard from './MechanicInfoCard'
+import MechanicInfoCard from './MechanicInfoCard';
 import AppointmentsApproval from './AppointmentsApproval';
-import WaitingDiagnostic from './WaitingDiagnostic'
+import WaitingDiagnostic from './WaitingDiagnostic';
+import DiagnosticInProgress from './DiagnosticInProgress';
 //CSS
 
 
@@ -41,6 +42,11 @@ class Mechanic extends Component{
                         pickDiagnostic={this.PickDiagnostic}
                         setFlag={this.SetFlag}
                         runDiagnostic={this.RunDiagnostic}
+                    />
+                </div>
+                <div className="in-progress">
+                    <DiagnosticInProgress id={this.props.user.id}
+
                     />
                 </div>
             </>
@@ -98,7 +104,30 @@ class Mechanic extends Component{
         else{this.setState({pickedDiagnostic: pick})}
     }
     RunDiagnostic = (code) => {
-        console.log("Unijeli ste kod za dijagnostiku:",code)
+        //test
+        fetch(`http://localhost:3000/diagnostic-code/${code}`)
+        .then(res => res.json())
+        .then(data =>{
+            if(data !== "Code not found"){
+                this.StartDiagnostics(data.code);
+            }
+        })
+    }
+    StartDiagnostics = (code) => {
+        let {pickedDiagnostic} = this.state;
+        fetch('http://localhost:3000/resolve-diagnostic', {
+            method: 'put',
+            headers: {'Content-Type':'application/json'},
+            body: JSON.stringify({
+                appointment_number: pickedDiagnostic.appointment_number,
+                code: code
+            })
+        })
+        .then(res => res.json())
+        .then(data =>{
+            console.log("Promijenjeno: ", data)
+            this.SetFlag();
+        })
     }
     //#endregion
     
