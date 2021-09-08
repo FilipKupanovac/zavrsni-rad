@@ -21,34 +21,34 @@ class NewVehicleMech extends Component {
     render(){
         return(
             <div>
-                <p>Input new vehicle's information</p>
-                <label>Owner</label>
+                <p>Unesite podatke novog vozila</p>
+                <label>ID Vlasnika</label>
                 <input onChange={this.onOwnerChange}
                 type="text"></input>{/* //Endless possibilities */}
-                <label>Manufacturer</label>
+                <label>Proizvođač</label>
                 <input onChange={this.onManufacturerChange} type="text"></input>
                 <label>Model</label>
                 <input onChange={this.onModelChange} type="text"></input>
-                <label>Year</label>
+                <label>Godina</label>
                 <input onChange={this.onYearChange} type="number"></input>
-                <label>Serial Number</label>
+                <label>Serijski broj</label>
                 <input onChange={this.onSerialChange} maxLength="17" type="text"></input>
-                <label>Drivetrain</label>
+                <label>Pogon</label>
                 <select onChange={this.onDrivetrainChange}>
                     <option value=""></option>
                     <option value="A">AWD</option>
                     <option value="F">FWD</option>
                     <option value="R">RWD</option>
                 </select>
-                <label>Horsepower</label>
+                <label>Snaga (KS)</label>
                 <input onChange={this.onHorsepowerChange} type="number"></input>
-                <label>License plate</label>
+                <label>Registracijska oznaka</label>
                 <input onChange={this.onLicenseChange} maxLength="10" type="text"></input>
                 <button onClick={() => {
                     this.AddNewVehicle();
                     this.props.toggleAddVehicle();
-                }}>Add Vehicle</button>
-                <button onClick={() => this.props.toggleAddVehicle()}>Cancel</button>
+                }}>Dodaj vozilo</button>
+                <button onClick={() => this.props.toggleAddVehicle()}>Odustani</button>
             </div>
         )
     }
@@ -104,7 +104,6 @@ class NewVehicleMech extends Component {
     //Fetch post method to add new car
     AddNewVehicle = () =>{
         let {driverId,manufacturer,model,year,serial,drivetrain,horsepower,license}=this.state;
-
         if(this.ManufacModelCheck() && this.YearCheck() 
             && this.SerialCheck() && this.DrivetrainCheck() 
             && horsepower>0 && license !== undefined

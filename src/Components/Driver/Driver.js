@@ -142,6 +142,9 @@ class Driver extends Component {
         .then(resp => resp.json())
         .then(data =>{
             if(data.status !== 400){
+                this.setState({dateInput: undefined, 
+                    mechanicInput:undefined,
+                    problemInput: undefined})
                 this.setState({key: Math.random()})
             }
         })
@@ -175,7 +178,6 @@ class Driver extends Component {
         {
             this.SendScheduleRequest();
             this.ToggleSubmitAvailable();
-
         }
     }
     ToggleAddVehicleAvailable = () => {

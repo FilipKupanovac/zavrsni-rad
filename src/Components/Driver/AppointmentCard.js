@@ -5,7 +5,6 @@ import React from 'react';
 
 const AppointmentCard = ({appointment}) =>{
     let date = new Date(appointment.scheduled_time)
-    date.setMonth(date.getMonth())
     return(
         <div className="appointment-driver">
             <hr/>

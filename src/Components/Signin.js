@@ -19,28 +19,23 @@ class Signin extends Component{
                     <p>Sign in</p>
                     <div className="fill-width pa05 flex">
                         <label>Email</label>
-                        <input
-                            onChange={this.onEmailChange}
+                        <input onChange={this.onEmailChange}
                             type="email" name="email-address"
                         ></input>
                     </div>
                     <div className="fill-width pa05 flex">
                         <label>Password</label>
-                        <input
-                            onChange={this.onPasswordChange}
+                        <input onChange={this.onPasswordChange}
                             type="password" name="password"
                         ></input>
                     </div>
                 </fieldset>
-                <button
-                    onClick={this.Submit}
-                >
+                <button onClick={this.Submit}>
                     Sign In
                 </button>
             </div>
         )
     }
-
     //#region input tracking
     onEmailChange = (event) =>{
         this.setState({email: event.target.value});
@@ -66,8 +61,7 @@ class Signin extends Component{
                 this.props.loadUser(user);
                 this.props.trySignIn()
             }
-        })
-        .catch(err => {
+        }).catch(err => {
             console.log(err)
         })
     }

@@ -24,30 +24,26 @@ class Register extends Component{
                         <div className="half-width">
                             <div className="fill-width pa05 flex">
                                 <label>Full Name</label>
-                                <input
-                                    onChange={this.onNameChange}
+                                <input onChange={this.onNameChange}
                                     type="text" name="name"
                                 ></input>
                             </div>
                             <div className="fill-width pa05 flex">
                                 <label>Email</label>
-                                <input
-                                    onChange={this.onEmailChange}
+                                <input onChange={this.onEmailChange}
                                     type="email" name="email-address"
                                 ></input>
                             </div>
                             <div className="fill-width pa05 flex">
                                 <label>Password</label>
-                                <input
-                                    onChange={this.onPasswordChange}
+                                <input onChange={this.onPasswordChange}
                                     type="password" name="password"
                                 ></input>
                             </div>
                         </div>
                         <div className="half-width">
                             <div className="fill-width pa05">
-                                <input
-                                    onChange={this.onCheckboxCheck}
+                                <input onChange={this.onCheckboxCheck}
                                     type="checkbox" name="mechanic-check" value="mechanic"
                                 ></input>
                                 <label name="mechanic-check">I'm a mechanic</label>
@@ -56,9 +52,7 @@ class Register extends Component{
                         </div>
                     </div>
                 </fieldset>
-                <button
-                    onClick={this.Register}
-                    >
+                <button onClick={this.Register}>
                     Register
                 </button>
             </div>
@@ -116,23 +110,25 @@ class Register extends Component{
                     email: email,
                     password: password,
                     name: name,
-                    vcode: vcode
+                    vcode: vcode,
+                    //TEST
+                    checkboxState: this.state.checkboxState
                 })
             })
-            /* .then(response => {
-                var odg= response.json();
-                console.log("RES", odg)
-                return odg
-            })
-            .then(user => {
-                console.log(user);
-                if(user){
-                    this.props.loadUser(user)
-                    this.props.trySignIn();
-                    this.props.getContent()
-                }
-            }) */
             .then(resp => resp.json())
+            .then(res =>{
+                if(res.name === name && res.email === email){
+                    this.props.loadUser(res);
+                    this.props.trySignIn()
+                }
+            })
+            .catch(console.log("BAD REQUEST - Check your input please."))
+        }
+        else 
+            console.log("Empty input fields")
+    }
+
+            /* OVO JE RADILO ALI IDEMO NA BOLJI NAČIN
             .then(resp =>{
                 console.log("RESPONSE REGISTER: ", resp.status,"\nRES: ", resp)
                 if(resp.status !== 400){
@@ -154,11 +150,8 @@ class Register extends Component{
                     })
                 }
             })
-            .catch(console.log("BAD REQUEST Register.js 147:10"))
-        }
-        else 
-            console.log("Empty input fields")
-    }
+              TEK ISPOD OVOGA JE IŠA CATCH*/
+            
 }
 
 export default Register;

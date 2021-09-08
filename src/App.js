@@ -19,10 +19,7 @@ class App extends Component {
         name: '',
         type: '',
         id: ''
-      }
-    }
-  }
-
+  }}}
   render(){
     return(
       <>
@@ -30,24 +27,21 @@ class App extends Component {
         <div className='content'>
           <>{this.GetContent()}</>
         </div>
-        {/* po volji neko podnožje */}
       </>
     )
   }
-
-  SetRoute = (route) =>{
-    this.setState({route: route});
-  }
-
   GetContent(){
-
     switch(this.state.route){
       case 'signin': return <Signin loadUser={this.LoadUser} trySignIn={this.TrySignin}/>
-      case 'register': return <Register loadUser={this.LoadUser} getContent={this.GetContent} trySignIn={this.TrySignin}/>
+      case 'register': return <Register loadUser={this.LoadUser} trySignIn={this.TrySignin}/>
       case 'driv': return <Driver user={this.state.user}/>
       case 'mech': return <Mechanic user={this.state.user}/>
       default: return <></>
     }
+  }
+
+  SetRoute = (route) =>{
+    this.setState({route: route});
   }
 
   TrySignin = () =>{
@@ -60,10 +54,10 @@ class App extends Component {
     this.setState({isSignedIn: false})
   }
 
-  SetRoute=(rout)=>{
+  /* SetRoute=(rout)=>{
     this.setState({route:rout})
   }
-
+ */
   LoadUser = (user) =>{
     this.setState({user:{
       email:user.email,
