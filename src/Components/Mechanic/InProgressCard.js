@@ -58,7 +58,7 @@ class InProgressCard extends Component{
 
     GetRecommendedParts = () => {
         return(
-            <RecommendedParts/>
+            <RecommendedParts car={this.state.car} diagnosys={this.state.diagnosticCode} diagnostic={this.props.diagnostic}/>
         )
     }
 }
