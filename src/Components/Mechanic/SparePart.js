@@ -12,7 +12,8 @@ class SparePart extends Component{
     render(){
         let {part} = this.state;
         return(
-            <div className="spare-part">
+            <div onClick={() => this.props.pickPart(part)}
+            className="spare-part">
                 <p>{part.service_part}</p>
                 <p>Proizvođač: {part.manufacturer}</p>
                 <p>EAN: {part.ean}</p>

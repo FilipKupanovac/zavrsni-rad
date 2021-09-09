@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import SparePart from './SparePart';
 //Components
+import SparePart from './SparePart';
 //CSS
 
 
@@ -12,6 +12,7 @@ class RecommendedParts extends Component{
             diagnosys: this.props.diagnosys,
             diagnostic: this.props.diagnostic, //redak appointment tablice
             spareParts: undefined,
+            pickedPart: undefined,
         }
     }
     render(){
@@ -19,8 +20,12 @@ class RecommendedParts extends Component{
         return(//test -> umjesto div stavljen fragment, div u svakoj metodi zasebno
         <>
             {(diagnostic.service_part !== null && this.state.spareParts!== undefined)
-            ? <>{this.ChooseParts()}</>
+            ? <>{this.ShowParts()}</>
             : <>{this.FinishService()}</>
+            }
+            {this.state.pickedPart !== undefined
+            ? <></>
+            : <></>
             }
         </>
         )
@@ -46,10 +51,9 @@ class RecommendedParts extends Component{
         .then(res => res.json())
         .then(data => this.setState({spareParts: data}))
     }
-    ChooseParts = () => {
+    ShowParts = () => {
         let {/* car,diagnosys, */diagnostic} = this.props;
-        let {spareParts} = this.state
-        console.log("Svi dijelovi: ", spareParts)
+        let {spareParts, pickedPart} = this.state
         return(
             <>
                 <div className="just-center">
@@ -58,13 +62,45 @@ class RecommendedParts extends Component{
                 <div className="just-center">
                     <div className="flex space-around w70 wrap">{spareParts.map(part =>{
                         return(
-                            <SparePart sparePart={part}/>
+                            <SparePart sparePart={part}
+                                pickPart={this.PickPart}
+                                //pickedPart={this.state.pickedPart} za drugačiju pozadinu odabranog dijela
+                            />
                             )
                         })}
                     </div>
                 </div>
+                <>{pickedPart !== undefined
+                ?   <div className="just-center">
+                        <div className="w70 in-progress">
+                            <p>Odabrali ste dio: {pickedPart.service_part} {pickedPart.manufacturer}, EAN: {pickedPart.ean}</p>
+                            <p>Cijena: {pickedPart.price}GBP</p>
+                            <div className="just-center">
+                                <button>Naruči</button>
+                            </div>
+                        </div>
+                    </div>
+                : <></>
+                }
+                </>
             </>
         )
+    }
+
+    PickPart = (pick) =>{
+        if(this.state.pickedPart !== undefined){
+            if(pick.ean !== this.state.pickedPart.ean){
+                this.setState({pickedPart: pick})
+                //this.setState({submitAvailable: true})
+            }
+            else{
+                this.setState({pickedPart: undefined})
+            }
+        }
+        else{
+            this.setState({pickedPart: pick})
+            //this.setState({submitAvailable: true})
+        }
     }
 }
 
