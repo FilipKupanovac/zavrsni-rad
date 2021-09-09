@@ -123,7 +123,7 @@ button, .pointer{
 .validation-label{
   min-width: 130px;
 }
-.appointments, .diagnostics, .in-progress, .picked-vehicle{
+.appointments, .diagnostics, .in-progress, .resolved, .picked-vehicle{
   border: 1.5px solid black;
   border-radius: 10px;
   margin-top: 1.5rem;

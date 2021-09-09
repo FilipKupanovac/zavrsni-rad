@@ -17,15 +17,11 @@ class RecommendedParts extends Component{
     }
     render(){
         let {diagnostic} = this.props;
-        return(//test -> umjesto div stavljen fragment, div u svakoj metodi zasebno
+        return(
         <>
             {(diagnostic.service_part !== null && this.state.spareParts!== undefined)
             ? <>{this.ShowParts()}</>
             : <>{this.FinishService()}</>
-            }
-            {this.state.pickedPart !== undefined
-            ? <></>
-            : <></>
             }
         </>
         )
@@ -40,7 +36,7 @@ class RecommendedParts extends Component{
                 <p>Nije potrebno mijenjati ništa. Završite servis.</p>
                 </div>
                 <div className="just-center">
-                    <button>Završi</button>
+                    <button onClick={()=> this.EndService()}>Završi</button>
                 </div>
             </>
         )
@@ -62,7 +58,8 @@ class RecommendedParts extends Component{
                 <div className="just-center">
                     <div className="flex space-around w70 wrap">{spareParts.map(part =>{
                         return(
-                            <SparePart sparePart={part}
+                            <SparePart key={part.ean}
+                                sparePart={part}
                                 pickPart={this.PickPart}
                                 //pickedPart={this.state.pickedPart} za drugačiju pozadinu odabranog dijela
                             />
@@ -101,6 +98,24 @@ class RecommendedParts extends Component{
             this.setState({pickedPart: pick})
             //this.setState({submitAvailable: true})
         }
+    }
+
+    EndService = () =>{
+        let {diagnostic} = this.state;
+        //TEST
+        console.log("POKUŠAJ");
+        fetch(`http://localhost:3000/end-service`, {
+            method: 'put',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify({
+                appointment_number: diagnostic.appointment_number
+            })
+        })
+        .then(res => res.json())
+        .then(data =>{
+            console.log("ZAVRŠEN SERVIS", data)
+            //this.props.setFlag();
+        })
     }
 }
 

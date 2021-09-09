@@ -4,6 +4,7 @@ import MechanicInfoCard from './MechanicInfoCard';
 import AppointmentsApproval from './AppointmentsApproval';
 import WaitingDiagnostic from './WaitingDiagnostic';
 import DiagnosticInProgress from './DiagnosticInProgress';
+import ResolvedAppointments from './ResolvedAppointments';
 //CSS
 
 
@@ -46,7 +47,12 @@ class Mechanic extends Component{
                 </div>
                 <div className="in-progress">
                     <DiagnosticInProgress id={this.props.user.id}
-
+                        setFlag={this.SetFlag}
+                    />
+                </div>
+                <div className="resolved">
+                    <ResolvedAppointments id={this.props.user.id}
+                        setFlag={this.SetFlag}
                     />
                 </div>
             </>
@@ -130,7 +136,9 @@ class Mechanic extends Component{
         })
     }
     //#endregion
-    
+    //#region resolved
+
+    //#endregion
 }
 
 export default Mechanic;
