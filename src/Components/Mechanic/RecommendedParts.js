@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 //Components
 import SparePart from './SparePart';
+import Order from './Order';
 //CSS
 
 
@@ -20,14 +21,14 @@ class RecommendedParts extends Component{
         return(
         <>
             {(diagnostic.service_part !== null && this.state.spareParts!== undefined)
-            ? <>{this.ShowParts()}</>
+            ? <>{this.ShowOrder()}</>
             : <>{this.FinishService()}</>
             }
         </>
         )
     }
     componentDidMount(){
-        this.GetParts()
+        this.GetParts();
     }
 
     FinishService = () =>{
@@ -72,10 +73,14 @@ class RecommendedParts extends Component{
                 <>{pickedPart !== undefined
                 ?   <div className="just-center">
                         <div className="w70 in-progress">
-                            <p>Odabrali ste dio: {pickedPart.service_part} {pickedPart.manufacturer}, EAN: {pickedPart.ean}</p>
+                            <p>Odabrali ste dio: {pickedPart.service_part} {pickedPart.part_manufacturer}, EAN: {pickedPart.ean}</p>
                             <p>Cijena: {pickedPart.price}GBP</p>
                             <div className="just-center">
-                                <button>Naruči</button>
+                                <button
+                                    onClick={() => {
+                                        this.OrderPart()
+                                    }}
+                                >Naruči</button>
                             </div>
                         </div>
                     </div>
@@ -90,7 +95,6 @@ class RecommendedParts extends Component{
         if(this.state.pickedPart !== undefined){
             if(pick.ean !== this.state.pickedPart.ean){
                 this.setState({pickedPart: pick})
-                //this.setState({submitAvailable: true})
             }
             else{
                 this.setState({pickedPart: undefined})
@@ -98,7 +102,6 @@ class RecommendedParts extends Component{
         }
         else{
             this.setState({pickedPart: pick})
-            //this.setState({submitAvailable: true})
         }
     }
 
@@ -116,6 +119,37 @@ class RecommendedParts extends Component{
             this.props.setFlag();
         })
     }
+    //test
+    OrderPart = () =>{
+        let {pickedPart, diagnostic} = this.state;
+        console.log("Dio: ", pickedPart)
+        console.log("Appointment: ", diagnostic)
+        fetch(`http://localhost:3000/order-part`, {
+            method: 'put',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify({
+                ean: pickedPart.ean,
+                appointment_number: diagnostic.appointment_number
+            })
+        })
+        .then(data =>{
+            console.log(data.json())
+            this.props.setFlag();
+        })
+    }
+
+    ShowOrder = () => {
+        let {diagnostic} = this.state;
+        if(diagnostic.made_order === 'Y'){
+                return(
+                    <Order
+                        ean={diagnostic.ean}
+                    />
+                )
+        }
+        else return (this.ShowParts());
+    }
+
 }
 
 export default RecommendedParts;
