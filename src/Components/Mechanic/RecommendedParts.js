@@ -45,8 +45,8 @@ class RecommendedParts extends Component{
         )
     }
     GetParts = () =>{
-        let {diagnostic} = this.props;
-        fetch(`http://localhost:3000/parts/${diagnostic.service_part}`)
+        let {diagnostic, car} = this.props;
+        fetch(`http://localhost:3000/parts/${diagnostic.service_part}/${car.manufacturer}`)
         .then(res => res.json())
         .then(data => this.setState({spareParts: data}))
     }

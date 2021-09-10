@@ -155,11 +155,9 @@ class Driver extends Component {
                 <datalist id="mylist">
                     {this.state.mechanics.map(mechanic =>{
                         return(
-                            <>
                                 <option 
                                     key={mechanic.id}
                                     value={mechanic.name}/>
-                            </>
                         )
                     })
                     }
