@@ -31,7 +31,10 @@ class DiagnosticForm extends Component{
                     <p className="nomarg">Unesite kod s dijagnostičkog uređaja:</p>
                     <input onChange={this.onOutputChange}
                      type="text" maxLength="5"></input>
-                    <button onClick={() => this.props.runDiagnostic(this.state.diagnosticOutput)}>Potvrdi</button>
+                    <button onClick={() => {
+                        this.props.runDiagnostic(this.state.diagnosticOutput)
+                    }
+                    }>Potvrdi</button>
                 </div>
                 <button onClick={() =>this.setState({runDiagnostic:false})}>Odustani</button>
             </div>

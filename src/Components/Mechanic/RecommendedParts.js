@@ -36,7 +36,9 @@ class RecommendedParts extends Component{
                 <p>Nije potrebno mijenjati ništa. Završite servis.</p>
                 </div>
                 <div className="just-center">
-                    <button onClick={()=> this.EndService()}>Završi</button>
+                    <button onClick={()=> {
+                        this.EndService()
+                    }}>Završi</button>
                 </div>
             </>
         )
@@ -102,8 +104,6 @@ class RecommendedParts extends Component{
 
     EndService = () =>{
         let {diagnostic} = this.state;
-        //TEST
-        console.log("POKUŠAJ");
         fetch(`http://localhost:3000/end-service`, {
             method: 'put',
             headers: {'Content-Type': 'application/json'},
@@ -113,8 +113,7 @@ class RecommendedParts extends Component{
         })
         .then(res => res.json())
         .then(data =>{
-            console.log("ZAVRŠEN SERVIS", data)
-            //this.props.setFlag();
+            this.props.setFlag();
         })
     }
 }

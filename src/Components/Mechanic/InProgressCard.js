@@ -14,7 +14,6 @@ class InProgressCard extends Component{
     render(){
         let {diagnostic} = this.props;
         let {diagnosticCode,car} = this.state
-        //console.log(diagnostic)
         return(
             <>
             <hr/>
@@ -58,7 +57,9 @@ class InProgressCard extends Component{
 
     GetRecommendedParts = () => {
         return(
-            <RecommendedParts car={this.state.car} diagnosys={this.state.diagnosticCode} diagnostic={this.props.diagnostic}/>
+            <RecommendedParts car={this.state.car} diagnosys={this.state.diagnosticCode} diagnostic={this.props.diagnostic}
+            setFlag={this.props.setFlag}
+            />
         )
     }
 }

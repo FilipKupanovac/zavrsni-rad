@@ -131,7 +131,6 @@ class Mechanic extends Component{
         })
         .then(res => res.json())
         .then(data =>{
-            console.log("Promijenjeno: ", data)
             this.SetFlag();
         })
     }

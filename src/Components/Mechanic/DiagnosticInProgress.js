@@ -57,6 +57,7 @@ class DiagnosticInProgress extends Component{
                     return(
                         <InProgressCard key={diag.appointment_number}
                             diagnostic={diag}
+                            setFlag={this.props.setFlag}
                         />
                     )
                 })}

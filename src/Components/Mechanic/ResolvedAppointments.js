@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import ResolvedAppointmentCard from './ResolvedAppointmentCard';
 //Components
 //CSS
 
@@ -64,11 +65,9 @@ class ResolvedAppointments extends Component{
                             Prikaži manje</p>
                         {this.state.resolvedAppointments.map(app => {
                             return(
-                                <div key={app.appointment_number}>
-                                    <p>
-                                        {app.serial_number}
-                                    </p>
-                                </div>
+                                <ResolvedAppointmentCard key={app.appointment_number}
+                                    appointment={app}
+                                />
                             )
                         })}
                     </>
