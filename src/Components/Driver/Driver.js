@@ -4,6 +4,7 @@ import VehicleList from './VehicleList'
 import SubmitScheduleForm from './SubmitScheduleForm'
 import ScheduledAppointments from './ScheduledAppointments';
 import NewVehicle from './NewVehicle';
+import InProgress from './InProgress';
 //CSS
 import '../../CSS/Driver.css'
 class Driver extends Component {
@@ -72,6 +73,10 @@ class Driver extends Component {
                 <div className="appointments">
                     <p>Diagnostics</p>
                     <ScheduledAppointments key={this.state.key} id={this.state.ownerId} pending={'N'} />
+                </div>
+                <div className="appointments">
+                    <p>Postupci u tijeku</p>
+                    <InProgress key={this.state.key} id={this.state.ownerId}/>
                 </div>
                 <>
                     {this.ShowMechanics()}

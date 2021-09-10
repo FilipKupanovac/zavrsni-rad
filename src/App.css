@@ -137,6 +137,9 @@ button, .pointer{
 .warning{
   background: linear-gradient(to left, #FD7F2C, #FD9346);
 }
+.pa-r{
+  padding-right: 15px;
+}
 .padding-block{
   padding: 1rem .75rem;
 }
