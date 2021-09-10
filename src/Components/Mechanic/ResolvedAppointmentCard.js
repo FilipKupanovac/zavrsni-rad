@@ -6,24 +6,49 @@ class ResolvedAppointmentCard extends Component{
     constructor(props) {
         super(props);
         this.state = {
+            part: undefined,
         }
     }
     render(){
         let {appointment} = this.props;
+        let {part}=this.state;
         return(
             <>  
                 <hr/>  
                 <div className="appointment-card">
                     <p>APPOINTMENT: {appointment.appointment_number}, Dijagnostički kod: {appointment.code}</p>
                     <p>Vozilo: {appointment.manufacturer} {appointment.model}</p>
-                    <>{appointment.note !== null
+                    <>{appointment.service_note !== null
                      ? <>
-                        <p>Postupak: {appointment.note}</p>
-                        <p>Izmijenjen dio: (ubaciti dio, klasa ResolvedAppointmentCard)</p>
+                        <p>Postupak: {appointment.service_note}</p>
+                        {part !== undefined 
+                        ? <>{this.GetPartJSX()}
+                        </>
+                        : <></>
+                        }
                        </>
                      : <p>Pregled. Nije pronađena pogreška, nema izmijenjenih dijelova.</p>
                     }</>
                 </div>
+            </>
+        )
+    }
+    componentDidMount(){
+        this.GetPart();
+    }
+    GetPart = () => {
+        let {appointment}= this.props;
+        if(appointment.ean !== null)
+        fetch(`http://localhost:3000/get-part-ean/${appointment.ean}`)
+        .then(res => res.json())
+        .then(data => this.setState({part: data}))
+    }
+    GetPartJSX = () =>{
+        let {part}=this.state;
+        return(
+            <>
+            <p>Izmijenjen dio: {part.service_part} {part.part_manufacturer}</p>
+            <p>Potrošeno: {part.price}GBP</p>
             </>
         )
     }

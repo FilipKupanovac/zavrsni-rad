@@ -8,14 +8,13 @@ class Order extends Component{
         super(props);
         this.state = {
             part: undefined,
+            serviceNote: '',
         }
     }
     render(){
         let {part} = this.state
-        console.log("PART ORDER: ", part)
         return(
             <>
-                <p>Narudženo, {this.props.ean}</p>
                 <>{part !== undefined
                 ?   <><div className="just-center">
                         <div className="w70 in-progress appointment-card">
@@ -24,12 +23,18 @@ class Order extends Component{
                             <p>Cijena: {part.price}GBP</p>
                         </div>
                     </div>
-                    <div className="just-center appointment-card">
-                        <label>Unesite opis postupka</label>
-                        <input type="text" placeholder="Opišite postupak"></input>
+                    <div className="just-center">                
+                        <div className="w70 appointment-card">
+                            <label>Unesite opis postupka</label><br></br>
+                                <input type="text" placeholder="Opišite postupak"
+                                style={{width: "100%", height: "1.5em"}}
+                                onChange={this.onInputChange}
+                                ></input>
+                        </div>
                     </div>
                     <div className="just-center">
-                        <button>Završi servis</button>
+                        <button onClick={() => this.EndService()}
+                        >Završi servis</button>
                     </div>
                     </>
                 : <></>
@@ -41,10 +46,31 @@ class Order extends Component{
     componentDidMount(){
         this.GetPart()
     }
+    onInputChange = (event) =>{
+        this.setState({serviceNote: event.target.value})
+    }
     GetPart = () => {
         fetch(`http://localhost:3000/get-part-ean/${this.props.ean}`)
         .then(res => res.json())
         .then(data => this.setState({part: data}))
+    }
+    EndService = () =>{
+        let {diagnostic}=this.props
+        let {serviceNote}=this.state
+        if(serviceNote !== ''){
+            fetch(`http://localhost:3000/end-service`, {
+            method: 'put',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify({
+                appointment_number: diagnostic.appointment_number,
+                service_note: serviceNote
+            })
+        })
+        .then(res => res.json())
+        .then(data =>{
+            this.props.setFlag();
+        })
+        }
     }
 }
 

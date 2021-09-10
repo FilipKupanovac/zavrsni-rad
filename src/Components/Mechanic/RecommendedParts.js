@@ -111,7 +111,8 @@ class RecommendedParts extends Component{
             method: 'put',
             headers: {'Content-Type': 'application/json'},
             body: JSON.stringify({
-                appointment_number: diagnostic.appointment_number
+                appointment_number: diagnostic.appointment_number,
+                service_note: null
             })
         })
         .then(res => res.json())
@@ -122,8 +123,6 @@ class RecommendedParts extends Component{
     //test
     OrderPart = () =>{
         let {pickedPart, diagnostic} = this.state;
-        console.log("Dio: ", pickedPart)
-        console.log("Appointment: ", diagnostic)
         fetch(`http://localhost:3000/order-part`, {
             method: 'put',
             headers: {'Content-Type': 'application/json'},
@@ -132,9 +131,10 @@ class RecommendedParts extends Component{
                 appointment_number: diagnostic.appointment_number
             })
         })
+        .then(res => res.json())
         .then(data =>{
-            console.log(data.json())
-            this.props.setFlag();
+            this.setState({diagnostic: data})
+            this.props.setFlag()
         })
     }
 
@@ -143,7 +143,9 @@ class RecommendedParts extends Component{
         if(diagnostic.made_order === 'Y'){
                 return(
                     <Order
+                        diagnostic={diagnostic}
                         ean={diagnostic.ean}
+                        setFlag={this.props.setFlag}
                     />
                 )
         }
