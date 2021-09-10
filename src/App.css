@@ -85,33 +85,26 @@ nav p{
 button, .pointer{
   cursor: pointer;
 }
-
 .clickable{
   cursor: pointer;
 }
-
 .center{
   text-align: center;
 }
-
 .register-form{
   display: flex;
   flex-flow: row wrap;
 }
-
 .half-width{
   width: 50%;
   min-width: 320px;
 }
-
 .pa05{
   padding: 0.5rem;
 }
-
 .fill-width{
   width: 100%;
 }
-
 .flex{
   display: flex;
 }
@@ -119,7 +112,6 @@ button, .pointer{
   display: flex;
   justify-content: center;
 }
-
 .validation-label{
   min-width: 130px;
 }
@@ -128,11 +120,9 @@ button, .pointer{
   border-radius: 10px;
   margin-top: 1.5rem;
 }
-
 .awaiting-diagnostics:last-child, .awaiting-approval:last-child{
   margin-bottom: .5em;
 }
-
 .appointment-card{
   padding-block-start: 1em;
   padding-block-end: 1em;
@@ -150,14 +140,12 @@ button, .pointer{
 .padding-block{
   padding: 1rem .75rem;
 }
-
 .space-around{
   justify-content: space-around;
 }
 .w70{
   width: 70%;
 }
-
 .vehicle-card, .spare-part{
   border: 0px solid transparent;
   border-radius: 8px;

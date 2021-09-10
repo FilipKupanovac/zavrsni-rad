@@ -3,12 +3,10 @@
     justify-content: flex-start;
     align-items: center;
 }
-
 .last{
     margin-left: auto;
     margin-right: 10px;
 }
-
 .picked-vehicle-info{
     min-height: 3rem;
     margin: 16px 0;
