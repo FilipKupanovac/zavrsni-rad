@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 //Components
 //CSS
 
-class InProgressDriverCard extends Component{
+class ResolvedAppsDriverCard extends Component{
     constructor(props){
         super(props);
         this.state = {
@@ -23,7 +23,7 @@ class InProgressDriverCard extends Component{
                     <p className="pa-r nomarg">Dijagnostički kod pogreške: {appointment.code}</p>
                     <p className="nomarg">Opis pogreške: {appointment.description}</p>
                 </div>
-                <>{appointment.code === "P0000" ? <p>Čekajte dok serviser ne zaključi postupak</p> : <>{this.ShowProblem()}</>
+                <>{appointment.code === "P0000" ? <p>Pregled. Nije pronađena pogreška na automobilu.</p> : <>{this.ShowService()}</>
                 }
                 </>
                 <>{this.ShowPart()}</>
@@ -33,15 +33,6 @@ class InProgressDriverCard extends Component{
     componentDidMount(){
         this.GetPart()
     }
-    ShowProblem = () =>{
-        let {appointment} = this.props;
-        return(
-            <>
-            <p>Problem: {appointment.description}</p>
-            <p>Predloženi postupak: {appointment.recommend_action}</p>
-            </>
-        )
-    }
     GetPart = () => {
         let {appointment} = this.props;
         if(appointment.ean !== null)
@@ -49,23 +40,28 @@ class InProgressDriverCard extends Component{
         .then(res => res.json())
         .then(data => this.setState({part: data}))
     }
+    ShowService = () =>{
+        let {appointment} = this.props;
+        return(
+            <>
+            <p>Serviser: {appointment.name}</p>
+            <p>Učinjeni postupak: {appointment.service_note}</p>
+            </>
+        )
+    }
     ShowPart = () =>{
         let {part} = this.state;
         let {appointment} = this.props;
         return(
             <>{(appointment.made_order !== 'N' && part !==undefined)
             ?   <>
-                    <p>Naručili ste: {part.service_part} {part.part_manufacturer}</p>
-                    <p>Cijena: {part.price} GBP</p>
-                    <p>Po pozivu servisera odvezite vozilo na servis.</p>
+                    <p>Zamijenjeni dio: {part.service_part} {part.part_manufacturer}, EAN: {part.ean}</p>
+                    <p>Cijena izmijenjenog dijela: {part.price} GBP</p>
                 </>
-            :   <>
-                    <p>Potreban vam je zamjenski dio: {appointment.service_part}.</p>
-                    <p>U dogovoru s mehaničarom odaberite zamjenski dio za vaše vozilo.</p>
-                </>
+            :   <>{console.log("DEAD END, POPRAVITI KLASU ResolvedAppsDriver")}</>
             }
             </>
         )
     }
 }
-export default InProgressDriverCard;
+export default ResolvedAppsDriverCard;
