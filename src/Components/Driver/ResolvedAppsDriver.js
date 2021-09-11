@@ -8,13 +8,31 @@ class ResolvedAppsDriver extends Component{
         super(props);
         this.state={
             ownerId:this.props.id,
-            appointments: undefined
+            appointments: [],
+            showResolved: false,
         }
     }
     render(){
-        return(
+        /* return(
             <>
                 {this.IterateAppointments()}
+            </>
+        ) */
+        return(
+            <>
+            <p>Imate {this.state.appointments.length} završenih postupaka</p>
+            <>{!this.state.showResolved 
+            ?   <>
+                <p className="pointer"
+                    onClick={() => this.ToggleShowResolved()}>Prikaži više</p>
+                </>
+            :   <>
+                    <p className="pointer"
+                        onClick={() => this.ToggleShowResolved()}>Prikaži manje</p>
+                    {this.IterateAppointments()}
+                </>
+            }
+            </>
             </>
         )
     }
@@ -47,6 +65,10 @@ class ResolvedAppsDriver extends Component{
         .then(appointments => {
             this.setState({appointments: appointments})
         })
+    }
+
+    ToggleShowResolved = () =>{
+        this.setState({showResolved: !this.state.showResolved})
     }
 }
 

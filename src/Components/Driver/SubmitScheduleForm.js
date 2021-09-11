@@ -18,7 +18,7 @@ class SubmitScheduleForm extends Component{
                 return(
                     <button className="submit-button"
                         onClick={() => this.props.toggleSubmitAvailable()}
-                    >Schedule new appointment</button>
+                    >Traži novi pregled</button>
                 )
             }
         else 
@@ -26,24 +26,24 @@ class SubmitScheduleForm extends Component{
                 <div>
                     <fieldset>
                         <div className="fill-width pa05 flex">
-                            <label className="submitlabel">Preffered date</label>
+                            <label className="submitlabel">Željeni datum</label>
                             <input
                                 onChange={this.props.onDateChange}
                                 type="date"
                             ></input>
                         </div>
                         <div className="fill-width pa05 flex">
-                            <label className="submitlabel">Mechanic</label>
+                            <label className="submitlabel">Serviser</label>
                             <input
                                 onChange={this.props.onMechanicChange} 
-                                placeholder="Start typing preffered mechanic"
+                                placeholder="Upišite naziv servisera"
                                 type="search" list="mylist"></input>
                         </div>
                         <div className="fill-width pa05 flex">
-                            <label className="submitlabel">Problem explanation</label>
+                            <label className="submitlabel">Opis problema</label>
                             <input className="problem-input"
                                 onChange={this.props.onProblemChange}
-                                type="text" placeholder="Please describe what's wrong with your vehicle (optional)"
+                                type="text" placeholder="Opišite problem koji ste uočili (neobavezno)"
                             ></input>
                         </div>
                     </fieldset>
@@ -51,12 +51,12 @@ class SubmitScheduleForm extends Component{
                         <button
                             onClick={() => this.props.trySubmit()}
                         >
-                            Schedule
+                            Zatraži pregled
                         </button>
                         <button
                             onClick={() => this.props.toggleSubmitAvailable()}
                             >
-                            Cancel
+                            Odustani
                         </button>
                     </div>
                 </div>

@@ -19,11 +19,11 @@ class Register extends Component{
         return(
             <div>
                 <fieldset>
-                    <p>Register</p>
+                    <p>Registracija</p>
                     <div className="register-form">
                         <div className="half-width">
                             <div className="fill-width pa05 flex">
-                                <label>Full Name</label>
+                                <label>Korisničko ime</label>
                                 <input onChange={this.onNameChange}
                                     type="text" name="name"
                                 ></input>
@@ -35,7 +35,7 @@ class Register extends Component{
                                 ></input>
                             </div>
                             <div className="fill-width pa05 flex">
-                                <label>Password</label>
+                                <label>Lozinka</label>
                                 <input onChange={this.onPasswordChange}
                                     type="password" name="password"
                                 ></input>
@@ -46,14 +46,14 @@ class Register extends Component{
                                 <input onChange={this.onCheckboxCheck}
                                     type="checkbox" name="mechanic-check" value="mechanic"
                                 ></input>
-                                <label name="mechanic-check">I'm a mechanic</label>
+                                <label name="mechanic-check">Ja sam mehaničar</label>
                             </div>
                             <>{this.ShowMechanicInputField()}</>
                         </div>
                     </div>
                 </fieldset>
                 <button onClick={this.Register}>
-                    Register
+                    Registriraj se
                 </button>
             </div>
         )
@@ -87,7 +87,7 @@ class Register extends Component{
         if(this.state.checkboxState === true){
             return(
                     <div className="fill-width pa05 flex">
-                        <label className="validation-label">Validation Code</label>
+                        <label className="validation-label">Kod za provjeru</label>
                         <input
                             onChange={this.onValidationCodeChange}
                             type="password" name="VCode"
@@ -127,31 +127,7 @@ class Register extends Component{
         else 
             console.log("Empty input fields")
     }
-
-            /* OVO JE RADILO ALI IDEMO NA BOLJI NAČIN
-            .then(resp =>{
-                console.log("RESPONSE REGISTER: ", resp.status,"\nRES: ", resp)
-                if(resp.status !== 400){
-                    fetch('http://localhost:3000/signin', {
-                        method: 'post',
-                        headers: {'Content-Type': 'application/json'},
-                        body: JSON.stringify({
-                            email: resp.email,
-                            password: resp.password
-                        })
-                    }).then(res => {
-                        let odg = res.json();
-                        return odg;
-                    }).then(user => {
-                        if(user !== 'wrong credentials'){
-                            this.props.loadUser(user);
-                            this.props.trySignIn()
-                        }
-                    })
-                }
-            })
-              TEK ISPOD OVOGA JE IŠA CATCH*/
-            
+       
 }
 
 export default Register;

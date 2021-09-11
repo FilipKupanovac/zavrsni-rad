@@ -15,7 +15,6 @@ class Mechanic extends Component{
             name: this.props.user.name,
             id: this.props.user.id,
             flag: undefined,
-            //APPS APPROVAL PART
             pickedAppointment: undefined,
             pickedDiagnostic: undefined,
         }
@@ -110,7 +109,6 @@ class Mechanic extends Component{
         else{this.setState({pickedDiagnostic: pick})}
     }
     RunDiagnostic = (code) => {
-        //test
         fetch(`http://localhost:3000/diagnostic-code/${code}`)
         .then(res => res.json())
         .then(data =>{

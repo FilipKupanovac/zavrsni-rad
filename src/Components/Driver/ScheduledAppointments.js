@@ -21,21 +21,24 @@ class ScheduledAppointments extends Component{
     IterateAppointments = () =>{
         let {prevAppointments} = this.state
         if(Array.isArray(prevAppointments)){
-            return(
-                <div>
+            if(prevAppointments.length){
+
+                return(
+                    <div>
                     {prevAppointments.map(appointment =>{
                         return(
                             <AppointmentCard key={appointment.appointment_number} appointment={appointment}
                             />
-                        )
-                    })}
+                            )
+                        })}
                 </div>
-            )
-        }
-        else{
-            return(
-                <p>You have not got any pending appointments</p>
-            )
+                )
+            }
+            else{
+                return(
+                    <p>Trenutno nemate zahtjeva na čekanju</p>
+                )
+            }
         }
     }
     componentDidMount(){

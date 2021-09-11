@@ -51,7 +51,7 @@ class RecommendedParts extends Component{
         .then(data => this.setState({spareParts: data}))
     }
     ShowParts = () => {
-        let {/* car,diagnosys, */diagnostic} = this.props;
+        let {diagnostic} = this.props;
         let {spareParts, pickedPart} = this.state
         return(
             <>
@@ -64,7 +64,6 @@ class RecommendedParts extends Component{
                             <SparePart key={part.ean}
                                 sparePart={part}
                                 pickPart={this.PickPart}
-                                //pickedPart={this.state.pickedPart} za drugačiju pozadinu odabranog dijela
                             />
                             )
                         })}

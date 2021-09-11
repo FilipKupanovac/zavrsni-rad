@@ -16,12 +16,12 @@ class MechanicInfoCard extends Component {
             <>
             <div className="mechanic">
                 <div className="info">        
-                    <p>{this.props.name}</p>
-                    <p>{this.props.email}</p>
+                    <p>Serviser: {this.props.name}</p>
+                    <p>Kontakt: {this.props.email}</p>
                 </div>
                 <button style={this.state.addVehicle ? {display:"none"} :{}}
                      onClick={() => this.setState({addVehicle: true})}
-                     className="last">Add new vehicle</button>
+                     className="last">Dodaj novo vozilo</button>
             </div>
             <div>
                 {this.state.addVehicle

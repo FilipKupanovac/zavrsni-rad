@@ -9,7 +9,7 @@ const AppointmentCard = ({appointment}) =>{
         <div className="appointment-driver">
             <hr/>
             <p>{appointment.manufacturer} {appointment.model}</p>
-            <p>Scheduled: {date.getDate()}.{date.getMonth() +1}.{date.getFullYear()}.</p>
+            <p>Termin: {date.getDate()}.{date.getMonth() +1}.{date.getFullYear()}.</p>
             <>{appointment.note !== null
              ? <p>Opis problema: {appointment.note}</p>
              : <></>

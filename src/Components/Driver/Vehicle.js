@@ -8,11 +8,11 @@ const Vehicle = ({car, pickvehicle}) => {
         <div className="vehicle-card"
             onClick={() => pickvehicle(car)}
         >
-            <p>Manufacturer: {car.manufacturer}</p>
+            <p>Proizvođač: {car.manufacturer}</p>
             <p>Model: {car.model}</p>
-            <p>Year: {car.year}</p>
-            <p>Horsepower: {car.horsepower}</p>
-            <p>Drivetrain: {car.drivetrain}WD</p>
+            <p>Godina: {car.year}</p>
+            <p>Snaga motora (KS): {car.horsepower}</p>
+            <p>Pogon: {car.drivetrain}WD</p>
         </div>
     )
 }

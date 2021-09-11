@@ -16,7 +16,7 @@ class ResolvedAppointmentCard extends Component{
             <>  
                 <hr/>  
                 <div className="appointment-card">
-                    <p>APPOINTMENT: {appointment.appointment_number}, Dijagnostički kod: {appointment.code}</p>
+                    <p>Servisni broj: {appointment.appointment_number}, Dijagnostički kod: {appointment.code}</p>
                     <p>Vozilo: {appointment.manufacturer} {appointment.model}</p>
                     <>{appointment.service_note !== null
                      ? <>
@@ -48,7 +48,7 @@ class ResolvedAppointmentCard extends Component{
         return(
             <>
             <p>Izmijenjen dio: {part.service_part} {part.part_manufacturer}</p>
-            <p>Potrošeno: {part.price}GBP</p>
+            <p>Potrošeno: {part.price} GBP</p>
             </>
         )
     }

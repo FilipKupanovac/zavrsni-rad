@@ -19,7 +19,7 @@ class PendingAppointmentCard extends Component{
                 <div className={today>date? "appointment-card warning" : "appointment-card"}
                     onClick={() => pickAppointment(appointment)}
                 >
-                    <p>APPOINTMENT: {appointment.appointment_number}, Datum: {date.getDate()}. {date.getMonth()+1}. {date.getFullYear()}. , Mehaničar: {appointment.mechanic}</p>
+                    <p>Servisni broj: {appointment.appointment_number}, Datum: {date.getDate()}. {date.getMonth()+1}. {date.getFullYear()}. , Serviser: {appointment.mechanic}</p>
                     <>{appointment.note !== null
                      ? <p>Opis problema: {appointment.note}</p>
                      : <></>

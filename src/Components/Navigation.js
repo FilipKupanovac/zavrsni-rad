@@ -10,15 +10,15 @@ const Navigation = ({isSignedIn,signOut,setRoute}) =>{
                 <p className="clickable" onClick = {() => {
                     signOut()
                     setRoute('signin')
-                    }}>Sign Out</p>
+                    }}>Odjava</p>
             </nav>
         )
     }
     else{
         return(
             <nav>
-                <p className="clickable" onClick = {() => setRoute('signin')}>Signin</p>
-                <p className="clickable" onClick = {() => setRoute('register')}>Register</p>
+                <p className="clickable" onClick = {() => setRoute('signin')}>Prijava</p>
+                <p className="clickable" onClick = {() => setRoute('register')}>Registracija</p>
             </nav>
         )
     }

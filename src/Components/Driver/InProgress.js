@@ -21,21 +21,23 @@ class InProgress extends Component{
     IterateAppointments = () =>{
         let {appointments} = this.state
         if(Array.isArray(appointments)){
-            return(
-                <div>
+            if(appointments.length){
+                return(
+                    <div>
                     {appointments.map(appointment =>{
                         return(
                             <InProgressDriverCard key={appointment.appointment_number} appointment={appointment}
                             />
-                        )
+                            )
                     })}
-                </div>
-            )
-        }
-        else{
-            return(
-                <p>Nemate servisnih postupaka u tijeku</p>
-            )
+                    </div>
+                )
+            }
+            else{
+                return(
+                    <p>Nemate servisnih postupaka u tijeku</p>
+                    )
+            }
         }
     }
     componentDidMount(){

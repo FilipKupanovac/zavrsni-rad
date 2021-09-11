@@ -32,10 +32,10 @@ class Driver extends Component {
         return(
             <>
                 <div className="driver-tab">
-                    <p>Driver: {this.state.name}</p>
+                    <p>Korisnik: {this.state.name}</p>
                     <button style={this.state.addVehicle ? {display:"none"} :{}}
                      onClick={() => this.setState({addVehicle: true})}
-                     className="last">Add new vehicle</button>
+                     className="last">Dodaj vozilo</button>
                 </div>
                 <div>
                     {this.state.addVehicle

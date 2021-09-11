@@ -19,7 +19,7 @@ class DiagnosticCard extends Component{
                 <div className={today>date? "appointment-card warning" : "appointment-card"}
                     onClick={() => pickDiagnostic(diagnostic)}
                 >
-                    <p>DIAGNOSTIC: {diagnostic.appointment_number}, Datum: {date.getDate()}. {date.getMonth()+1}. {date.getFullYear()}. , Mehaničar:{diagnostic.mechanic}</p>
+                    <p>Servisni broj: {diagnostic.appointment_number}, Datum: {date.getDate()}. {date.getMonth()+1}. {date.getFullYear()}. , Serviser:{diagnostic.mechanic}</p>
                     <>{diagnostic.note !== null
                      ? <p>Opis problema: {diagnostic.note}</p>
                      : <></>

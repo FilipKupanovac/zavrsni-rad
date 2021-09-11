@@ -16,7 +16,7 @@ class Signin extends Component{
         return(
             <div>
                 <fieldset>
-                    <p>Sign in</p>
+                    <p>Prijava</p>
                     <div className="fill-width pa05 flex">
                         <label>Email</label>
                         <input onChange={this.onEmailChange}
@@ -24,14 +24,14 @@ class Signin extends Component{
                         ></input>
                     </div>
                     <div className="fill-width pa05 flex">
-                        <label>Password</label>
+                        <label>Lozinka</label>
                         <input onChange={this.onPasswordChange}
                             type="password" name="password"
                         ></input>
                     </div>
                 </fieldset>
                 <button onClick={this.Submit}>
-                    Sign In
+                    Prijava
                 </button>
             </div>
         )

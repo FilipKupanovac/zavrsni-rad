@@ -15,10 +15,10 @@ class ResolvedAppsDriverCard extends Component{
             <div className="appointment-driver">
                 <hr/>
                 <p>{appointment.manufacturer} {appointment.model}</p>
-                <>{appointment.note !== null
+                {/* <>{appointment.note !== null
                  ? <p>Opis problema: {appointment.note}</p>
                  : <></>
-                }</>
+                }</> */}
                 <div className="register-form">
                     <p className="pa-r nomarg">Dijagnostički kod pogreške: {appointment.code}</p>
                     <p className="nomarg">Opis pogreške: {appointment.description}</p>

@@ -22,30 +22,30 @@ class NewVehicle extends Component {
         return(
             <div>
                 <p>Input your vehicle's information</p>
-                <label>Manufacturer</label>
+                <label>Proizvođač</label>
                 <input onChange={this.onManufacturerChange} type="text"></input>
                 <label>Model</label>
                 <input onChange={this.onModelChange} type="text"></input>
-                <label>Year</label>
+                <label>Godina</label>
                 <input onChange={this.onYearChange} type="number"></input>
-                <label>Serial Number</label>
+                <label>Serijski broj</label>
                 <input onChange={this.onSerialChange} maxLength="17" type="text"></input>
-                <label>Drivetrain</label>
+                <label>Pogon</label>
                 <select onChange={this.onDrivetrainChange}>
                     <option value=""></option>
                     <option value="A">AWD</option>
                     <option value="F">FWD</option>
                     <option value="R">RWD</option>
                 </select>
-                <label>Horsepower</label>
+                <label>Snaga motora (KS)</label>
                 <input onChange={this.onHorsepowerChange} type="number"></input>
-                <label>License plate</label>
+                <label>Registracijska oznaka</label>
                 <input onChange={this.onLicenseChange} maxLength="10" type="text"></input>
                 <button onClick={() => {
                     this.AddNewVehicle();
                     this.props.toggleAddVehicle();
-                }}>Add Vehicle</button>
-                <button onClick={() => this.props.toggleAddVehicle()}>Cancel</button>
+                }}>Dodaj vozilo</button>
+                <button onClick={() => this.props.toggleAddVehicle()}>Odustani</button>
             </div>
         )
     }
