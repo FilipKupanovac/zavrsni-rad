@@ -19,35 +19,54 @@ class NewVehicle extends Component {
         }
     }
     render(){
-        return(
-            <div>
-                <p>Input your vehicle's information</p>
-                <label>Proizvođač</label>
-                <input onChange={this.onManufacturerChange} type="text"></input>
-                <label>Model</label>
-                <input onChange={this.onModelChange} type="text"></input>
-                <label>Godina</label>
-                <input onChange={this.onYearChange} type="number"></input>
-                <label>Serijski broj</label>
-                <input onChange={this.onSerialChange} maxLength="17" type="text"></input>
-                <label>Pogon</label>
-                <select onChange={this.onDrivetrainChange}>
-                    <option value=""></option>
-                    <option value="A">AWD</option>
-                    <option value="F">FWD</option>
-                    <option value="R">RWD</option>
-                </select>
-                <label>Snaga motora (KS)</label>
-                <input onChange={this.onHorsepowerChange} type="number"></input>
-                <label>Registracijska oznaka</label>
-                <input onChange={this.onLicenseChange} maxLength="10" type="text"></input>
-                <button onClick={() => {
-                    this.AddNewVehicle();
-                    this.props.toggleAddVehicle();
-                }}>Dodaj vozilo</button>
-                <button onClick={() => this.props.toggleAddVehicle()}>Odustani</button>
+        return(<>
+            <div className="appointments">
+                <div className="padding-block">
+                    <p className="nomarg marg-bot">Unesite podatke novog vozila</p>
+                    
+                    <div className="register-form marg-half-bot">
+                        <div className="new-vehicle"><label>Proizvođač</label></div>
+                        <input onChange={this.onManufacturerChange} type="text"></input>
+                    </div>                
+                    <div className="register-form marg-half-bot">
+                        <div className="new-vehicle"><label>Model</label></div>
+                        <input onChange={this.onModelChange} type="text"></input>
+                    </div>
+                    <div className="register-form marg-half-bot">
+                        <div className="new-vehicle"><label>Godina</label></div>
+                        <input onChange={this.onYearChange} type="number"></input>
+                    </div>
+                    <div className="register-form marg-half-bot">
+                        <div className="new-vehicle"><label>Serijski broj</label></div>
+                        <input onChange={this.onSerialChange} maxLength="17" type="text"></input>
+                    </div>
+                    <div className="register-form marg-half-bot">
+                        <div className="new-vehicle"><label>Pogon</label></div>
+                        <select onChange={this.onDrivetrainChange}>
+                            <option value=""></option>
+                            <option value="A">AWD</option>
+                            <option value="F">FWD</option>
+                            <option value="R">RWD</option>
+                        </select>
+                    </div>
+                    <div className="register-form marg-half-bot">
+                        <div className="new-vehicle"><label>Snaga motora (KS)</label></div>
+                        <input onChange={this.onHorsepowerChange} type="number"></input>
+                    </div>
+                    <div className="register-form marg-half-bot">
+                        <div className="new-vehicle"><label>Registracijska oznaka</label></div>
+                        <input onChange={this.onLicenseChange} maxLength="10" type="text"></input>
+                    </div>
+                    <div className="marg-top">
+                        <button onClick={() => {
+                            this.AddNewVehicle();
+                            this.props.toggleAddVehicle();
+                        }}>Dodaj vozilo</button>
+                        <button onClick={() => this.props.toggleAddVehicle()}>Odustani</button>
+                    </div>
+                </div>
             </div>
-        )
+        </>)
     }
 
     //#region input trackers

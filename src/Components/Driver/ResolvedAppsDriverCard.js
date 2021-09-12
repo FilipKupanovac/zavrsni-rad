@@ -15,15 +15,13 @@ class ResolvedAppsDriverCard extends Component{
             <div className="appointment-driver">
                 <hr/>
                 <p>{appointment.manufacturer} {appointment.model}</p>
-                {/* <>{appointment.note !== null
-                 ? <p>Opis problema: {appointment.note}</p>
-                 : <></>
-                }</> */}
                 <div className="register-form">
                     <p className="pa-r nomarg">Dijagnostički kod pogreške: {appointment.code}</p>
                     <p className="nomarg">Opis pogreške: {appointment.description}</p>
                 </div>
-                <>{appointment.code === "P0000" ? <p>Pregled. Nije pronađena pogreška na automobilu.</p> : <>{this.ShowService()}</>
+                <p>Serviser: {appointment.name}</p>
+                <>{appointment.code === "P0000" ? <p>Pregled. Nije pronađena pogreška na automobilu.</p> 
+                                                : <>{this.ShowService()}</>
                 }
                 </>
                 <>{this.ShowPart()}</>
@@ -42,25 +40,18 @@ class ResolvedAppsDriverCard extends Component{
     }
     ShowService = () =>{
         let {appointment} = this.props;
-        return(
-            <>
-            <p>Serviser: {appointment.name}</p>
-            <p>Učinjeni postupak: {appointment.service_note}</p>
-            </>
-        )
+        return(<p>Učinjeni postupak: {appointment.service_note}</p>)
     }
     ShowPart = () =>{
         let {part} = this.state;
         let {appointment} = this.props;
         return(
             <>{(appointment.made_order !== 'N' && part !==undefined)
-            ?   <>
-                    <p>Zamijenjeni dio: {part.service_part} {part.part_manufacturer}, EAN: {part.ean}</p>
+            ?   <>  <p>Zamijenjeni dio: {part.service_part} {part.part_manufacturer}, EAN: {part.ean}</p>
                     <p>Cijena izmijenjenog dijela: {part.price} GBP</p>
                 </>
-            :   <>{console.log("DEAD END, POPRAVITI KLASU ResolvedAppsDriver")}</>
-            }
-            </>
+            :   <></>
+            }</>
         )
     }
 }

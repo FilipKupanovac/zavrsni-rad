@@ -66,7 +66,7 @@ button:hover{
   background-color: #096b68;
 }
 label{
-  min-width: 120px;
+  width: 120px;
 }
 input{
   border: 1px solid;
@@ -169,4 +169,16 @@ button, .pointer{
 }
 .wrap{
   flex-flow: row wrap;
+}
+.marg-bot{
+  margin-bottom: 1em;
+}
+.marg-top{
+  margin-top: 1em;
+}
+.new-vehicle{
+  width: 180px;
+}
+.marg-half-bot{
+  margin-bottom: 0.5em;
 }

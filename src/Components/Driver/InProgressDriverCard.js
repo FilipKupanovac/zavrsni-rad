@@ -19,6 +19,7 @@ class InProgressDriverCard extends Component{
                  ? <p>Opis problema: {appointment.note}</p>
                  : <></>
                 }</>
+                <p>Serviser: {appointment.name}</p>
                 <div className="register-form">
                     <p className="pa-r nomarg">Dijagnostički kod pogreške: {appointment.code}</p>
                     <p className="nomarg">Opis pogreške: {appointment.description}</p>
@@ -26,7 +27,7 @@ class InProgressDriverCard extends Component{
                 <>{appointment.code === "P0000" ? <p>Čekajte dok serviser ne zaključi postupak</p> : <>{this.ShowProblem()}</>
                 }
                 </>
-                <>{this.ShowPart()}</>
+                <>{appointment.code === 'P0000' ? <></>: this.ShowPart()}</>
             </div>
         )
     }
@@ -37,14 +38,13 @@ class InProgressDriverCard extends Component{
         let {appointment} = this.props;
         return(
             <>
-            <p>Problem: {appointment.description}</p>
             <p>Predloženi postupak: {appointment.recommend_action}</p>
             </>
         )
     }
     GetPart = () => {
         let {appointment} = this.props;
-        if(appointment.ean !== null)
+        if(appointment.ean !== null )
         fetch(`http://localhost:3000/get-part-ean/${this.props.appointment.ean}`)
         .then(res => res.json())
         .then(data => this.setState({part: data}))

@@ -119,7 +119,6 @@ class RecommendedParts extends Component{
             this.props.setFlag();
         })
     }
-    //test
     OrderPart = () =>{
         let {pickedPart, diagnostic} = this.state;
         fetch(`http://localhost:3000/order-part`, {
