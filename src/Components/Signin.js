@@ -15,24 +15,32 @@ class Signin extends Component{
     render(){
         return(
             <div>
-                <fieldset>
-                    <p>Prijava</p>
-                    <div className="fill-width pa05 flex">
-                        <label>Email</label>
-                        <input onChange={this.onEmailChange}
-                            type="email" name="email-address"
-                        ></input>
+                <fieldset className="w50 marg-top">
+                    <div className="just-center">
+                    <p className="no-pad">Prijava</p>
                     </div>
-                    <div className="fill-width pa05 flex">
-                        <label>Lozinka</label>
-                        <input onChange={this.onPasswordChange}
-                            type="password" name="password"
-                        ></input>
+                    <div className="just-center">
+                        <div className="w70 pa05 flex just-stretch">
+                            <label>Email</label>
+                            <input onChange={this.onEmailChange}
+                                type="email" name="email-address"
+                                ></input>
+                        </div>
+                    </div>
+                    <div className="just-center">
+                        <div className="w70 pa05 flex just-stretch">
+                            <label>Lozinka</label>
+                            <input onChange={this.onPasswordChange}
+                                type="password" name="password"
+                            ></input>
+                        </div>
                     </div>
                 </fieldset>
-                <button onClick={this.Submit}>
-                    Prijava
-                </button>
+                <div className="just-center">
+                    <button className="centered-marg" onClick={this.Submit}>
+                        Prijava
+                    </button>
+                </div>
             </div>
         )
     }

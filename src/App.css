@@ -117,6 +117,10 @@ button, .pointer{
   display: flex;
   justify-content: center;
 }
+.just-stretch{
+  justify-content: space-between;
+  max-width: 400px;
+}
 .validation-label{
   min-width: 130px;
 }
@@ -154,6 +158,9 @@ button, .pointer{
 .w70{
   width: 70%;
 }
+.w80{
+  width: 80%
+}
 .vehicle-card, .spare-part{
   border: 0px solid transparent;
   border-radius: 8px;
@@ -181,4 +188,19 @@ button, .pointer{
 }
 .marg-half-bot{
   margin-bottom: 0.5em;
+}
+.w50{
+  width: 50%;
+  margin: 0 auto;
+  margin-top: 1em;
+}
+.centered-marg{
+  margin: 0 auto;
+  margin-top: 1em;
+}
+.no-pad{
+  padding: 0;
+}
+button.add-vehicle{
+  margin-right: 0.75em;
 }

@@ -18,43 +18,49 @@ class Register extends Component{
     render(){
         return(
             <div>
-                <fieldset>
-                    <p>Registracija</p>
-                    <div className="register-form">
-                        <div className="half-width">
-                            <div className="fill-width pa05 flex">
-                                <label>Korisničko ime</label>
-                                <input onChange={this.onNameChange}
-                                    type="text" name="name"
-                                ></input>
-                            </div>
-                            <div className="fill-width pa05 flex">
-                                <label>Email</label>
-                                <input onChange={this.onEmailChange}
-                                    type="email" name="email-address"
-                                ></input>
-                            </div>
-                            <div className="fill-width pa05 flex">
-                                <label>Lozinka</label>
-                                <input onChange={this.onPasswordChange}
-                                    type="password" name="password"
-                                ></input>
-                            </div>
-                        </div>
-                        <div className="half-width">
-                            <div className="fill-width pa05">
-                                <input onChange={this.onCheckboxCheck}
-                                    type="checkbox" name="mechanic-check" value="mechanic"
-                                ></input>
-                                <label name="mechanic-check">Ja sam mehaničar</label>
-                            </div>
-                            <>{this.ShowMechanicInputField()}</>
+                <fieldset className="w50 marg-top">
+                    <div className="just-center">
+                        <p className="no-pad">Registracija</p>
+                    </div>
+                    <div className="just-center">
+                        <div className="w70 pa05 flex just-stretch">
+                            <label>Korisničko ime</label>
+                            <input onChange={this.onNameChange}
+                                type="text" name="name"
+                            ></input>
                         </div>
                     </div>
+                    <div className="just-center">
+                        <div className="w70 pa05 flex just-stretch">
+                            <label>Email</label>
+                            <input onChange={this.onEmailChange}
+                                type="email" name="email-address"
+                            ></input>
+                        </div>
+                    </div>
+                    <div className="just-center">
+                        <div className="w70 pa05 flex just-stretch">
+                            <label>Lozinka</label>
+                            <input onChange={this.onPasswordChange}
+                                type="password" name="password"
+                            ></input>
+                        </div>
+                    </div>
+                    <div className="just-center">
+                        <div className="w80 pa05 just-center">
+                            <input onChange={this.onCheckboxCheck}
+                                    type="checkbox" name="mechanic-check"value="mechanic"
+                            ></input>
+                            <label style={{width: "150px"}} name="mechanic-check">Ja sam mehaničar</label>
+                        </div>
+                    </div>
+                    <>{this.ShowMechanicInputField()}</>
                 </fieldset>
-                <button onClick={this.Register}>
+                <div className="just-center">
+                <button className="centered-marg" onClick={this.Register}>
                     Registriraj se
                 </button>
+                </div>
             </div>
         )
     }
@@ -86,13 +92,15 @@ class Register extends Component{
     ShowMechanicInputField = () =>{
         if(this.state.checkboxState === true){
             return(
-                    <div className="fill-width pa05 flex">
+                <div className="just-center">
+                <div className="w70 pa05 flex just-stretch">
                         <label className="validation-label">Kod za provjeru</label>
                         <input
                             onChange={this.onValidationCodeChange}
                             type="password" name="VCode"
                         ></input>
-                    </div>
+                </div>
+                </div>
             )
         }
         else{
