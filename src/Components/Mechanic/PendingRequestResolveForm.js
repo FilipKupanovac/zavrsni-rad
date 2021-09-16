@@ -13,7 +13,7 @@ class PendingRequestResolveForm extends Component {
     render(){
         return(
             <div className={this.props.warning? "warning padding-block": "padding-block"}>                
-                <button onClick={() => this.ChangeDate()}>Promijeni Datum</button>
+                <button className="add-vehicle" onClick={() => this.ChangeDate()}>Promijeni Datum</button>
                 <>{this.state.dateChange
                  ?  <input
                     onChange={this.SetNewDate}
@@ -24,10 +24,10 @@ class PendingRequestResolveForm extends Component {
                 }
                 </>
                 <div>
-                <button
+                <button className="add-vehicle marg-top"
                     onClick={() => this.props.approveAppoint(this.state.newDate)}
                 >Potvrdi</button>
-                <button
+                <button className="add-vehicle marg-top"
                     onClick={() => this.props.rejectAppoint()}
                 >Odbij zahtjev</button>
                 </div>

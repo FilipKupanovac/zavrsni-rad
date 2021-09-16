@@ -62,11 +62,11 @@ class NewVehicleMech extends Component {
                         <input onChange={this.onLicenseChange} maxLength="10" type="text"></input>
                     </div>
                     <div className="marg-top">
-                        <button onClick={() => {
+                        <button className="add-vehicle" onClick={() => {
                             this.AddNewVehicle();
                             this.props.toggleAddVehicle();
                         }}>Dodaj vozilo</button>
-                        <button onClick={() => this.props.toggleAddVehicle()}>Odustani</button>
+                        <button className="add-vehicle" onClick={() => this.props.toggleAddVehicle()}>Odustani</button>
                     </div>
                 </div>
             </div>

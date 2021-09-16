@@ -20,7 +20,7 @@ class InProgressCard extends Component{
             <div className="appointment-card">
                     {(diagnosticCode !== undefined && car !== undefined)
                     ? <>
-                        <p>{car.manufacturer} {car.model}</p>
+                        <p>{car.manufacturer} {car.model}, Vlasnik: {diagnostic.name}</p>
                         <p>Servisni broj: {diagnostic.appointment_number}, Kod pogreške: {diagnostic.code}</p>
                         <p>Opis problema: {diagnosticCode.description}</p>
                         <p>Preporučena radnja: {diagnosticCode.recommend_action}</p>
